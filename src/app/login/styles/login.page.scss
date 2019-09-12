@@ -7,19 +7,27 @@
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .login-content {
-  background-image: url("/assets/images/back.png");
-  --background: var(--page-background);
+  --background: left top / 100% auto no-repeat fixed url("../../../assets/images/back-t.png"),
+  left bottom / 100% auto no-repeat fixed url("../../../assets/images/back-b.png");
+  background-size: 100% auto;
+  //--background: var(--page-background);
   --padding-start: var(--page-margin);
   --padding-end: var(--page-margin);
   --padding-top: var(--page-margin);
   --padding-bottom: var(--page-margin);
 
   .auth-title {
+    padding-top: 6rem;
     color: var(--ion-color-dark);
     font-weight: bold;
     margin-top: calc(var(--page-margin) / 2);
     margin-bottom: calc(var(--page-margin) * (3/2));
     letter-spacing: 0.6px;
+
+    .auth-logo{
+      width: 60%;
+      margin: 0 auto;
+    }
   }
 
   .inputs-list {
@@ -76,6 +84,8 @@
 
     .social-auth-btn {
       margin: 0px;
+      --background-color: var(--ion-color-primary);
+      --color: var(--ion-color-primary-contrast);
 
       &:not(:first-child) {
         margin-top: var(--page-margin);
