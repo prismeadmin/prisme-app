@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
 
   doLogin(): void {
     console.log('do Log In');
-    this.router.navigate(['app/categories']);
+    this.router.navigate(['/job-title']);
   }
 
   goToForgotPassword(): void {

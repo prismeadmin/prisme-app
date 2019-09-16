@@ -9,7 +9,13 @@ const routes: Routes = [
   { path: 'auth/login', loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule) },
   { path: 'auth/signup', loadChildren: () => import('./signup/signup.module').then(m => m.SignupPageModule) },
   { path: 'home-page', loadChildren: './home-page/home-page.module#HomePagePageModule' },
-  { path: 'auth/forgot-password', loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule) },
+  { path: 'auth/forgot-password', loadChildren: () => import('./forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule) },  { path: 'job-title', loadChildren: './job-title/job-title.module#JobTitlePageModule' },
+  { path: 'skills', loadChildren: './skills/skills.module#SkillsPageModule' },
+  { path: 'tags', loadChildren: './tags/tags.module#TagsPageModule' },
+  { path: 'job-title', loadChildren: './job-title/job-title.module' },
+  { path: 'skills', loadChildren: './skills/skills.module' },
+  { path: 'tags', loadChildren: './tags/tags.module' },
+
 
 ];
 @NgModule({

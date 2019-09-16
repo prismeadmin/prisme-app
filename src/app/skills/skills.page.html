@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Skills</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="skills-content">
+  <ion-toolbar>
+    <ion-title>{{ skills[jobId].title }}</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar *ngFor="let skill of skills[jobId].skills">
+    <ion-button expand="block" (click)="onClick()">{{ skill.title }}</ion-button>
+  </ion-toolbar>
+
+</ion-content>

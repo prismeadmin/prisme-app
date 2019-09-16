@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Job Title</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="jobtitle-content">
+  <ion-item>
+    <ion-label>Set your goal</ion-label>
+    <ion-select [(ngModel)]="job" (ionChange)="change()" ok-text="Okay" cancel-text="Dismiss">
+      <ion-select-option *ngFor="let job of array" [value]="job.id">{{ job.title }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>
