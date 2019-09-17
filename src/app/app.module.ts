@@ -13,12 +13,15 @@ import {LoginPage} from './login/login.page';
 import {ComponentsModule} from './components/components.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
+import {IonicStorageModule} from '@ionic/storage';
+
 @NgModule({
     declarations: [AppComponent],
     imports: [
         ComponentsModule,
         ReactiveFormsModule,
-        BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+        BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+        IonicStorageModule.forRoot()],
     providers: [
         StatusBar,
         SplashScreen,

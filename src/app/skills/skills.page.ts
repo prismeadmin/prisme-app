@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-skills',
@@ -7,9 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./skills.page.scss'],
 })
 export class SkillsPage implements OnInit {
+  jobId: any;
+  skills: any;
 
-  constructor(public router: Router) {
-    this.jobId = localStorage.jobId;
+  constructor(public router: Router, public storage: Storage) {
+    this.jobId = 1;
     this.skills = [
       {title: 'Job Title 1', id: 0, skills:[{title: 'Programming'},{title: 'Problem Solving'}]},
       {title: 'Job Title 2', id: 1, skills:[{title: 'Programming'},{title: 'Problem Solving'}]},
@@ -18,15 +21,10 @@ export class SkillsPage implements OnInit {
   }
 
   ngOnInit() {
-    if(!localStorage.jobId) {
-      this.router.navigate(['/job-title']);
-    }
-  }
-
-  ngOnDestroy() {
-    if (localStorage.jobId) {
-      localStorage.removeItem('jobId');
-    }
+    this.storage.get('jobId').then((value) => {
+      console.log(value);
+      this.jobId = value;
+    });
   }
 
   onClick(): void {

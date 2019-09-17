@@ -7,8 +7,15 @@
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .skills-content {
+  --background: left top / 100% auto no-repeat fixed url("/back-t.png"),
+  left bottom / 100% auto no-repeat fixed url("/back-b.png");
+  background-size: 100% auto;
+  //--background: var(--page-background);
   --padding-start: var(--page-margin);
   --padding-end: var(--page-margin);
   --padding-top: var(--page-margin);
   --padding-bottom: var(--page-margin);
+
+  ion-toolbar{--background: transparent;}
+  .title{margin-bottom: 1rem;text-align: center; font-weight: bold;}
 }

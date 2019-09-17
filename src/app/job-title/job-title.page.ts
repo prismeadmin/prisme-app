@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-job-title',
@@ -7,8 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./job-title.page.scss'],
 })
 export class JobTitlePage implements OnInit {
+  job: any;
+  array: any;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public storage: Storage) {
     this.array = [
       {title: 'Job Title 1', id: 0},
       {title: 'Job Title 2', id: 1},
@@ -16,13 +19,13 @@ export class JobTitlePage implements OnInit {
     ];
   }
 
-  ngOnInit() {
-    console.log(this.modeKeys);
-  }
+  ngOnInit() {}
 
   change(): void {
-    localStorage.jobId = this.job;
-    this.router.navigate(['/skills']);
+    this.storage.ready().then(() => {
+      this.storage.set('jobId', this.job);
+      this.router.navigate(['/skills']);
+    })
   }
 
 }

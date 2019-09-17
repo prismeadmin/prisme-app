@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content class="skills-content">
-  <ion-toolbar>
-    <ion-title>{{ skills[jobId].title }}</ion-title>
-  </ion-toolbar>
+  <ion-toolbar class="title">
+    <ion-text>{{ skills[jobId].title }}</ion-text>
+  </ion-toolbar>  
 
   <ion-toolbar *ngFor="let skill of skills[jobId].skills">
     <ion-button expand="block" (click)="onClick()">{{ skill.title }}</ion-button>

@@ -5,12 +5,22 @@
 </ion-header>
 
 <ion-content class="tags-content">
-  <ion-item>
-    <ion-label>Datetime</ion-label>
+  <ion-toolbar class="title">
+    <ion-text>Tag experiences</ion-text>
+  </ion-toolbar>
+  <ion-item lines="none" >
+    <ion-label position="stacked">Datetime</ion-label>
     <ion-datetime display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
   </ion-item>
-  <ion-item class="textarea">
-    <ion-label position="floating">Description</ion-label>
-    <ion-textarea rows="5"></ion-textarea>
+  <ion-item lines="none">
+    <ion-label position="stacked">Floating Label</ion-label>
+    <ion-input placeholder="Enter text"></ion-input>
   </ion-item>
+  <ion-item class="textarea" lines="none">
+    <ion-label position="stacked">Description</ion-label>
+    <ion-textarea rows="5" placeholder="Enter text"></ion-textarea>
+  </ion-item>
+  <ion-toolbar>
+    <ion-button expand="block">Save</ion-button>
+  </ion-toolbar>
 </ion-content>
