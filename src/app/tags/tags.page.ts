@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IonTagsInputModule} from "ionic-tags-input";
 
 @Component({
   selector: 'app-tags',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tags.page.scss'],
 })
 export class TagsPage implements OnInit {
+
+  tags: any;
 
   constructor() { }
 
