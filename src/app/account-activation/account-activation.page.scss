@@ -1,0 +1,52 @@
+.account-activation-page {
+  --background: left top / 100% auto no-repeat fixed url("../../assets/images/back-t.png"),
+  left bottom / 100% auto no-repeat fixed url("../../assets/images/back-b.png");
+  background-size: 100% auto;
+  --padding-start: var(--page-margin);
+  --padding-end: var(--page-margin);
+  --padding-top: var(--page-margin);
+  --padding-bottom: var(--page-margin);
+
+  .box {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    .block {
+      align-self: center;
+
+      .text {
+        font-size: 5vw;
+        text-align: center;
+      }
+
+      .loader {
+        font-size: 6vw;
+        text-align: center;
+      }
+
+      .success {
+        font-size: 5vw;
+        text-align: center;
+        padding-top: 4vw;
+        color: #32CD32;
+      }
+
+      .error {
+        font-size: 4vw;
+        text-align: center;
+        padding-top: 4vw;
+        color: #B22222;
+        padding-left: 10vw;
+        padding-right: 10vw;
+      }
+
+      .redirect{
+        font-size: 4vw;
+        text-align: center;
+        padding-top: 4vw;
+        color: #555;
+      }
+    }
+  }
+}

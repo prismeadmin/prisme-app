@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'tags', loadChildren: './tags/tags.module#TagsPageModule' },
   { path: 'job-title', loadChildren: './job-title/job-title.module' },
   { path: 'skills', loadChildren: './skills/skills.module' },
-  { path: 'tags', loadChildren: './tags/tags.module' },  { path: 'main', loadChildren: './main/main.module#MainPageModule' }
+  { path: 'tags', loadChildren: './tags/tags.module' },  { path: 'main', loadChildren: './main/main.module#MainPageModule' },
+  { path: 'account-activation', loadChildren: './account-activation/account-activation.module#AccountActivationPageModule' }
 
 ];
 @NgModule({

@@ -1,0 +1,11 @@
+<ion-content class="account-activation-page">
+  <div class="box">
+    <div class="block">
+      <div class="text">Account Activation in  Process</div>
+      <div class="loader" *ngIf="!success && !error">{{loader}}</div>
+      <div class="success" *ngIf="success">Account Activated</div>
+      <div class="error" *ngIf="error">Error account not found or link is expired</div>
+      <div class="redirect" *ngIf="redirect">redirecting{{loader}}</div>
+    </div>
+  </div>
+</ion-content>
