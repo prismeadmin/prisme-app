@@ -14,14 +14,12 @@ import {ComponentsModule} from './components/components.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import {IonicStorageModule} from '@ionic/storage';
-import {IonTagsInputModule} from "ionic-tags-input";
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
         ComponentsModule,
         ReactiveFormsModule,
-        IonTagsInputModule,
         BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         IonicStorageModule.forRoot()],
     providers: [

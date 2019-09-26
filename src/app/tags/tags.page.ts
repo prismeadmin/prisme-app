@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import {IonTagsInputModule} from "ionic-tags-input";
+import {Component, OnInit} from '@angular/core';
+import {NavController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-tags',
-  templateUrl: './tags.page.html',
-  styleUrls: ['./tags.page.scss'],
+    selector: 'app-tags',
+    templateUrl: './tags.page.html',
+    styleUrls: ['./tags.page.scss'],
 })
 export class TagsPage implements OnInit {
 
-  tags: any;
+    tags: any;
 
-  constructor() { }
+    constructor(public router: Router,) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
 
+    }
+
+    save() {
+        this.router.navigate(['/main']);
+    }
 }

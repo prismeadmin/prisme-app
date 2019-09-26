@@ -9,18 +9,26 @@
     <ion-text>Tag experiences</ion-text>
   </ion-toolbar>
   <ion-item lines="none" >
-    <ion-label position="stacked">Datetime</ion-label>
+    <ion-label position="stacked">Start Date</ion-label>
     <ion-datetime display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
   </ion-item>
-  <ion-item lines="none">
-    <ion-label position="stacked">Floating Label</ion-label>
-    <ion-tags-input [(ngModel)]="tags"></ion-tags-input>
+  <ion-item lines="none" >
+    <ion-label position="stacked">End Date</ion-label>
+    <ion-datetime display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
   </ion-item>
+  <ion-item >
+    <ion-label>Currenty working</ion-label>
+    <ion-checkbox slot="start"></ion-checkbox>
+  </ion-item>
+<!--  <ion-item lines="none">-->
+<!--    <ion-label position="stacked">Floating Label</ion-label>-->
+<!--&lt;!&ndash;    <ion-tags-input [(ngModel)]="tags"></ion-tags-input>&ndash;&gt;-->
+<!--  </ion-item>-->
   <ion-item class="textarea" lines="none">
     <ion-label position="stacked">Description</ion-label>
     <ion-textarea rows="5" placeholder="Enter text"></ion-textarea>
   </ion-item>
   <ion-toolbar>
-    <ion-button expand="block">Save</ion-button>
+    <ion-button expand="block" (click)="save()">Save</ion-button>
   </ion-toolbar>
 </ion-content>
