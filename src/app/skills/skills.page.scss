@@ -7,15 +7,83 @@
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .skills-content {
-  --background: left top / 100% auto no-repeat fixed url("/back-t.png"),
-  left bottom / 100% auto no-repeat fixed url("/back-b.png");
-  background-size: 100% auto;
-  //--background: var(--page-background);
+  --background: var(--page-background);
   --padding-start: var(--page-margin);
   --padding-end: var(--page-margin);
   --padding-top: var(--page-margin);
   --padding-bottom: var(--page-margin);
 
   ion-toolbar{--background: transparent;}
-  .title{margin-bottom: 1rem;text-align: center; font-weight: bold;}
+  .title{text-align: center; font-weight: bold;}
+
+  .select-item{
+    width: 90%;
+    position: relative;
+    left: 5%;
+    border: 1px solid #DDD;
+    margin-bottom: 2vw;
+    padding: 3vw;
+    background: rgba(255,255,255,0.8);
+    margin: 3vw 0;
+
+    .menu-tab-title{
+      font-size: 5vw;
+      font-weight: 550;
+      margin-bottom: 2vw;
+    }
+    .menu-tab-text{
+      font-size: 4vw;
+      font-style: italic;
+    }
+  }
+
+  .swipe-block{
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 5%;
+    padding-top: 0;
+
+    .swipe{
+      width: 100%;
+      position: relative;
+
+      div{
+        background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
+        position: relative;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 8%;
+        margin-top: 5%;
+        text-transform: uppercase;
+        border: 1px solid #DDD;
+        font-size: 4vw;
+        font-weight: bold;
+        color: #333;
+      }
+      div.check{
+        text-align: left;
+      }
+      div span{
+        position: absolute;
+        right: 8%;
+        top: 8%;
+        font-size: 10vw;
+        color: #FFF;
+      }
+    }
+  }
+
+  .next{
+    margin: 0 auto;
+    width: 20vw;
+    height: 20vw;
+    border: 1px solid orangered;
+    text-align: center;
+    line-height: 20vw;
+    font-size: 9vw;
+    margin-top: 5%;
+    background: linear-gradient(to top,orangered, gold);
+  }
 }

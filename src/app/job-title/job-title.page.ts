@@ -8,35 +8,25 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./job-title.page.scss'],
 })
 export class JobTitlePage implements OnInit {
-  job: any;
   array: any;
+  select: any=false;
+  select_option: any='Select';
 
   constructor(public router: Router, public storage: Storage) {
     this.array = [
-      {title: 'Product Manager', id: 1},
-      {title: 'Product Owner', id: 2},
-      {title: 'Product Marketing Manager', id: 3},
-      {title: 'Chief Product Officer', id: 4},
-      {title: 'Group Product Manager', id: 5},
-      {title: 'Software Developer', id: 6},
-      {title: 'Full Stack Developer', id: 7},
-      {title: 'Engineer', id: 8},
-      {title: 'Backend Developer', id: 9},
-      {title: 'Frontend Developer', id: 10},
-      {title: 'Web Developer', id: 11},
-      {title: 'Programmer', id: 12}
-
+      {title: 'Product', id: 1, text: 'sample job titles: product manager, product owner, product marketing manager, chief product officer, group product manager'},
+      {title: 'Development', id: 2, text: 'sample job titles: software developer, full stack developer, engineer, backend developer, frontend developer, programmer'},
+      {title: 'Analyze', id: 3, text: 'sample job titles: business analyst, QA analyst, business process analyst, IT business analyst, data analyst, business intelligence analyst, data scientist'},
     ];
   }
 
   ngOnInit() {}
 
-  change(): void {
+  selectJob(job) {
     this.storage.ready().then(() => {
-      this.storage.set('jobId', this.job);
+      this.storage.set('jobId', job);
       this.router.navigate(['/skills']);
     });
   }
 
 }
-

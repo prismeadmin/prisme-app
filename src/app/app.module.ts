@@ -14,6 +14,7 @@ import {ComponentsModule} from './components/components.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
 import {IonicStorageModule} from '@ionic/storage';
+import 'hammerjs';
 
 @NgModule({
     declarations: [AppComponent],

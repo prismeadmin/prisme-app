@@ -1,16 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Skills</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="skills-content">
   <ion-toolbar class="title">
-    <ion-text>{{ skills[jobId].title }}</ion-text>
-  </ion-toolbar>  
-
-  <ion-toolbar *ngFor="let skill of skills[jobId].skills">
-    <ion-button expand="block" (click)="onClick()">{{ skill.title }}</ion-button>
+    <ion-text>Let’s start with popular skills for</ion-text>
   </ion-toolbar>
+
+  <div class="select-item">
+    <div class="menu-tab-title">{{ skills[jobId].title }}</div>
+    <div class="menu-tab-text">{{ skills[jobId].text }}</div>
+  </div>
+
+  <ion-toolbar class="title">
+    <ion-text>Swipe the skills that you have</ion-text>
+  </ion-toolbar>
+
+  <div (swipe)="swipeEvent($event)" class="swipe-block">
+     <div class="swipe" (pan)="swipePan($event, i)" (panend)="swipeEnd($event)" *ngFor="let skill of skills[jobId].skills; let i = index">
+       <div [class.check]="skill.check">{{ skill.title }}<span *ngIf="skill.check">&#10004;</span></div>
+     </div>
+   </div>
+
+   <div class="next" (click)="onClick()" *ngIf="next">&#10149;</div>
 
 </ion-content>

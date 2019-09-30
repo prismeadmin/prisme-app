@@ -1,14 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Set your goal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="jobtitle-content">
-  <ion-item lines="none" type="button">
-    <ion-label>Select</ion-label>
-    <ion-select class="select" interface="action-sheet" [(ngModel)]="job" (ionChange)="change()" ok-text="Ok" cancel-text="Cancel">
-      <ion-select-option *ngFor="let job of array" [value]="job.id">{{ job.title }}</ion-select-option>
-    </ion-select>
-  </ion-item>
+  <div class="title">
+    <div>Start your <img src="/assets/images/diamond.png" /></div>
+    <div>exploration</div>
+  </div>
+  <div class="select" *ngIf="!select" (click)="select = true">
+    <div class="select-title">Select<div class="select-icon-inner"></div></div>
+  </div>
+  <div class="select-menu" *ngIf="select">
+    <div class="menu-tab" *ngFor="let job of array" (click)="selectJob(job.id)">
+      <div class="menu-tab-title">{{ job.title }}</div>
+      <div class="menu-tab-text">{{ job.text }}</div>
+    </div>
+  </div>
+  <img src="/assets/images/binoculars.png" class="binoculars" *ngIf="!select" />
 </ion-content>

@@ -10,18 +10,100 @@
   --background: left top / 100% auto no-repeat fixed url("/back-t.png"),
   left bottom / 100% auto no-repeat fixed url("/back-b.png");
   background-size: 100% auto;
-  //--background: var(--page-background);
   --padding-start: var(--page-margin);
   --padding-end: var(--page-margin);
   --padding-top: var(--page-margin);
   --padding-bottom: var(--page-margin);
 
   ion-toolbar{--background: transparent;}
-  .title{margin-bottom: 1rem;}
+  .title{
+    margin-top: 10vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: 6vw;
+
+    img{
+      width: 10vw;
+      margin-left: 1vw;
+      position: relative;
+      top: 2vw;
+    }
+
+    div{
+      width: 100%;
+      margin-top: 4vw;
+    }
+  }
+
+  .binoculars{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 30vw;
+  }
+
+  .select{
+    width: 90%;
+    height: 14vw;
+    border-bottom: 1px solid #DDD;
+    margin-top: 10vw;
+    position: relative;
+    left: 5%;
+
+    .select-title{
+      width: 100%;
+      height: 14vw;
+      padding: 0 1vw;
+      line-height: 14vw;
+
+      .select-icon-inner {
+          position: absolute;
+          right: 1vw;
+          top: 50%;
+          margin-top: -2.5px;
+          width: 0px;
+          height: 0px;
+          color: currentcolor;
+          opacity: 0.33;
+          pointer-events: none;
+          border-top: 5px solid;
+          border-right: 5px solid transparent;
+          border-left: 5px solid transparent;
+      }
+    }
+  }
+
+  .select-menu{
+    width: 90%;
+    height: auto;
+    position: relative;
+    margin-top: 10vw;
+    left: 5%;
+
+    .menu-tab{
+      width: 100%;
+      border: 1px solid #DDD;
+      margin-bottom: 2vw;
+      padding: 3vw;
+      background: rgba(255,255,255,0.8);
+
+      .menu-tab-title{
+        font-size: 5vw;
+        font-weight: 550;
+        margin-bottom: 2vw;
+      }
+      .menu-tab-text{
+        font-size: 4vw;
+        font-style: italic;
+      }
+    }
+  }
 
   ion-item {
     --border-radius: 0.4rem;
   }
+
   ion-action-sheet {
     --color: red;
   }
