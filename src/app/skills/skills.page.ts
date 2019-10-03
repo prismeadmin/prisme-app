@@ -9,16 +9,16 @@ import 'hammerjs';
     styleUrls: ['./skills.page.scss'],
 })
 export class SkillsPage implements OnInit {
-    jobId: any;
-    skills: any;
-    swipeI: number = null;
-    next: boolean = false;
+    skills: any = [];
+    activeSkills: any = {};
+    swipeI: any = null;
+    next: any = false;
+
 
     constructor(public router: Router, public storage: Storage) {
-        this.jobId = 1;
         this.skills = [
             {
-                title: 'Product', id: 1, text: 'sample job titles: product manager, product owner, product marketing manager, chief product officer, group product manager',
+                title: 'Product', id: 1, text: 'Product',
                 skills: [
                     {title: 'Analytical', id: 1, check: false},
                     {title: 'Active Listening', id: 2, check: false},
@@ -30,15 +30,12 @@ export class SkillsPage implements OnInit {
                 ]
             },
             {
-                title: 'Develop', id: 1, text: '12',
+                title: 'Develop', id: 2, text: 'Develop',
                 skills: [
                     {title: 'Analytical', id: 1, check: false},
                     {title: 'Active Listening', id: 2, check: false},
                     {title: 'Collaboration', id: 3, check: false},
                     {title: 'Negotiating', id: 4, check: false},
-                    {title: 'Teamwork', id: 5, check: false},
-                    {title: 'Communication', id: 6, check: false},
-                    {title: 'Problem Solving', id: 7, check: false}
                 ]
             },
         ];
@@ -46,33 +43,43 @@ export class SkillsPage implements OnInit {
     }
 
     ngOnInit() {
-        this.storage.get('jobId').then((value) => {
-            this.jobId = value;
+        this.storage.get('jobId').then((jobId) => {
+          this.activeSkills = this.skills.filter(function(item){
+            if (jobId == item.id) return item;
+          });
+          this.activeSkills = this.activeSkills[0];
         });
     }
 
     onClick(): void {
-        this.router.navigate(['/tags']);
+      this.storage.ready().then(() => {
+        let skillId = [];
+        this.activeSkills.skills.forEach(function(item){
+          skillId.push(item.id);
+        })
+        this.storage.set('skillId', skillId).then(() => {
+          this.router.navigate(['/tags']);
+        })
+      });
     }
 
     swipeEvent(e) {
       if (e.target.closest('.swipe')) {
         if (e.deltaX < -100){
-          console.log('left');
           if (this.swipeI !== null) {
-            this.skills[this.jobId].skills.splice(this.swipeI, 1);
+            this.activeSkills.skills.splice(this.swipeI, 1);
           }
         }
         if (e.deltaX > 100){
           if (this.swipeI !== null) {
-            this.skills[this.jobId].skills[this.swipeI].check = true;
+            this.activeSkills.skills[this.swipeI].check = true;
           }
         }
         let check = 0;
-        this.skills[this.jobId].skills.forEach(function(item){
+        this.activeSkills.skills.forEach(function(item){
           if (item.check) check++;
         })
-        if (this.skills[this.jobId].skills.length == check) this.next = true;
+        if (this.activeSkills.skills.length == check) this.next = true;
       }
     }
 

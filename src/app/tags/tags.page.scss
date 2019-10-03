@@ -7,23 +7,405 @@
 
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .tags-content {
-  --background: left top / 100% auto no-repeat fixed url("/back-t.png"),
-  left bottom / 100% auto no-repeat fixed url("/back-b.png");
-  background-size: 100% auto;
-  //--background: var(--page-background);
-  --padding-start: var(--page-margin);
-  --padding-end: var(--page-margin);
-  --padding-top: var(--page-margin);
-  --padding-bottom: var(--page-margin);
+  background: linear-gradient(270deg, #ffffff, #eeeeee);
+  background-size: 400% 400%;
+  animation: AnimationName 30s ease infinite;
 
-  ion-toolbar{--background: transparent;}
-  .title{margin-bottom: 1rem;text-align: center; font-weight: bold;}
+  .title{
+    width: 100%;
+    height: 20vw;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 11;
 
-  ion-item {
-    --border-radius: 0.4rem;
-    --background: rgba(220, 220, 220, 0.45);
-    margin-bottom: 1rem;
+    .title-l{
+      background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
+      width: calc(50% - 10vw);
+      height: 20vw;
+      position: relative;
+      float: left;
+      text-align: right;
+      line-height: 20vw;
+      padding-right: 5vw;
+      font-size: 6vw;
+    }
+    .prisme{
+      width: 20vw;
+      height: 20vw;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      margin-left: -10vw;
+      background: #FFF;
+      border: 1px solid #DDD;
+      border-top: 0;
+
+      img{
+        width: 10vw;
+        position: relative;
+        left: 50%;
+        margin-left: -5vw;
+        top: 5vw;
+      }
+    }
+    .title-r{
+      background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
+      width: calc(50% - 10vw);
+      height: 20vw;
+      position: relative;
+      float: right;
+      text-align: left;
+      line-height: 20vw;
+      padding-left: 5vw;
+      font-size: 6vw;
+    }
   }
 
-  .textarea {margin-top: 1rem;}
+  .list{
+    width: 100%;
+    padding-top: 28vw;
+
+    .list-border{
+      width: calc(100% - (12vw - 2px));
+      height: 100%;
+      position: fixed;
+      left: calc(6vw - 1px);
+      top: 0;
+      border-left: 1px solid #DDD;
+      border-right: 1px solid #DDD;
+    }
+
+    .list-tab{
+      width: 100%;
+      height: 17vw;
+      position: relative;
+      border-bottom: 1px solid #DDD;
+      padding: 0 6vw;
+      transition: 1s;
+      z-index: 10;
+      overflow: hidden;
+
+      .list-tab-block{
+        width: 100%;
+        height: auto;
+        background: #FFF;
+
+        .list-tab-header{
+          width: 100%;
+          height: 17vw;
+          position: relative;
+          padding: 0 4vw;
+          line-height: 17vw;
+          font-size: 4.5vw;
+          font-weight: 500;
+          color: #666;
+          letter-spacing: 0.1vw;
+
+          .list-tab-info{
+            position: absolute;
+            right: 4vw;
+            top: 5.5vw;
+            text-align: right;
+            line-height: 0;
+
+            :nth-child(1){font-size: 3vw; color: #555;}
+            :nth-child(2){font-size: 4vw; margin-top: 6vw; font-weight: 550; color: red; font-family: Tahoma;}
+            .true:nth-child(2){color: green;}
+          }
+        }
+
+        .experience-block{
+          width: 100%;
+          padding: 0 4vw;
+
+          .experience-tab{
+            width: 100%;
+            height: auto;
+            position: relative;
+            border: 1px solid #DDD;
+            margin-bottom: 4vw;
+
+            .experience-tab-name{
+              width: 100%;
+              height: auto;
+              padding: 4vw 4vw;
+              background: #EEE;
+              border-bottom: 1px solid #DDD;
+              font-size: 4.5vw;
+              letter-spacing: 0.1vw;
+              color: #444;
+              text-shadow: 1px 1px 1px #FFF;
+              position: relative;
+
+              .experience-edit{
+                padding: 2vw 4vw;
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 6vw;
+                color: #666;
+              }
+            }
+
+            .accomplished-block{
+              width: 100%;
+              padding: 0 4vw;
+              padding-left: 10vw;
+
+              .accomplished-li{
+                width: 100%;
+                padding-bottom: 4vw;
+                font-size: 4vw;
+                color: #555;
+                font-style: italic;
+                position: relative;
+              }
+              .accomplished-li:after{
+                content: '';
+                width: 2vw;
+                height: 2vw;
+                border-radius: 50%;
+                background: #555;
+                position: absolute;
+                left: -5vw;
+                top: 1.5vw;
+              }
+            }
+
+            .tab-block{
+              width: 100%;
+              padding: 4vw 4vw;
+              padding-bottom: 0;
+              color: #555;
+              font-size: 4vw;
+              letter-spacing: 0.1vw;
+              font-style: italic;
+              background: #FFF;
+
+              span{
+                display: inline-block;
+                width: 30%;
+                color: #777;
+                font-style: normal;
+              }
+            }
+            .tab-block.lists{
+              color: #777;
+              padding-bottom: 4vw;
+              font-style: normal;
+            }
+          }
+
+          .experience-tab:nth-child(1){margin-top: 2vw;}
+
+          .experience-add{
+            width: 50%;
+            height: 14vw;
+            position: relative;
+            right: 0;
+            float: right;
+            border: 1px solid darkorange;
+            margin-bottom: 4vw;
+            font-size: 3vw;
+            text-align: center;
+            line-height: 14vw;
+            background: orange;
+            text-transform: uppercase;
+            color: #FFF;
+          }
+        }
+      }
+    }
+    .list-tab:nth-child(1){border-top: 1px solid #DDD;}
+    .list-tab.open{height: auto;}
+  }
+
+  .list-add{
+    width: calc(100% - (12vw - 2px));
+    height: 16vw;
+    position: fixed;
+    left: calc(6vw - 1px);
+    bottom: 0;
+    text-align: center;
+    line-height: 16vw;
+    border: 1px solid darkorange;
+    border-bottom: 0;
+    text-transform: uppercase;
+    font-size: 4vw;
+    color: #FFF;
+    background: orange;
+    z-index: 11;
+
+    span{
+      padding-right: 4vw;
+    }
+  }
+
+  @keyframes AnimationName {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+  }
+
+  .popup{
+    width: 100%;
+    height: calc(100% - 20vw);
+    position: fixed;
+    left: 100%;
+    top: 20vw;
+    background: #FFF;
+    z-index: 11;
+    box-shadow: 0 0 1px #EEE;
+    transition: 0.3s;
+
+    .popup-block{
+      width: 100%;
+      height: calc(100% - 20vw);
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 8vw;
+      overflow-y: auto;
+
+      .dropdown-block{
+        width: 100%;
+        height: 14vw;
+        position: relative;
+        border: 1px solid #DDD;
+        transition: 0.3s;
+        overflow: hidden;
+        margin-bottom: 8vw;
+
+        .dropdown-title{
+          width: 100%;
+          height: 14vw;
+          position: relative;
+          line-height: calc(14vw - 2px);
+          padding: 0 4vw;
+          color: #777;
+          font-size: 4.5vw;
+
+          span{
+            width: 14vw;
+            height: 14vw;
+            position: absolute;
+            right: 0;
+            top: 0;
+            text-align: center;
+            line-height: calc(14vw - 4px);
+
+            i{
+              transition: 0.3s;
+              font-style: normal;
+              font-size: 7vw;
+              position: relative;
+              display: block;
+            }
+          }
+        }
+
+        .dropdown-title.drop{
+          background: #EEE;
+        }
+        
+        .dropdown-types{
+          width: 100%;
+          height: auto;
+
+          div{
+            width: 100%;
+            height: 14vw;
+            border-top: 1px solid #DDD;
+            padding: 0 4vw;
+            line-height: 14vw;
+            font-size: 4.5vw;
+          }
+        }
+      }
+      .dropdown-block.open{
+        height: auto;
+      }
+      .dropdown-block.open .dropdown-title span i{
+        transform: rotate(90deg);
+        top: 0.5vw;
+      }
+      .dropdown-block.open .dropdown-title{
+        background: #EEE;
+      }
+
+      .input-block{
+        width: 100%;
+        height: auto;
+        position: relative;
+        margin-bottom: 8vw;
+
+        input{
+          width: 100%;
+          height: 14vw;
+          position: relative;
+          border: 1px solid #DDD;
+          padding: 0 4vw;
+          font-size: 4.5vw;
+          color: #333;
+        }
+        input::placeholder{color: #999;}
+        input:hover::placeholder{color: transparent;}
+      }
+
+      .add-acc{
+        width: 50%;
+        height: 14vw;
+        position: relative;
+        right: 0;
+        float: right;
+        border: 1px solid darkorange;
+        margin-bottom: 4vw;
+        font-size: 3vw;
+        text-align: center;
+        line-height: 14vw;
+        background: orange;
+        text-transform: uppercase;
+        color: #FFF;
+      }
+
+      .accomplished-block{
+        width: 100%;
+        position: relative;
+        margin-top: 8vw;
+        clear: both;
+
+        input{
+          width: 100%;
+          height: 12vw;
+          position: relative;
+          border: 1px solid #DDD;
+          padding: 0 4vw;
+          font-size: 4.5vw;
+          color: #333;
+          margin-bottom: 4vw;
+        }
+        input::placeholder{color: #999;}
+        input:hover::placeholder{color: transparent;}
+      }
+    }
+
+    .done{
+      width: calc(100% - (12vw - 2px));
+      height: 14vw;
+      position: fixed;
+      left: calc(6vw - 1px);
+      bottom: 0;
+      text-align: center;
+      line-height: 14vw;
+      border: 1px solid darkorange;
+      border-bottom: 0;
+      text-transform: uppercase;
+      font-size: 4vw;
+      color: #FFF;
+      background: orange;
+      z-index: 11;
+    }
+  }
+  .popup.open{left: 0;}
 }

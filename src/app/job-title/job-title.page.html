@@ -7,7 +7,7 @@
     <div class="select-title">Select<div class="select-icon-inner"></div></div>
   </div>
   <div class="select-menu" *ngIf="select">
-    <div class="menu-tab" *ngFor="let job of array" (click)="selectJob(job.id)">
+    <div class="menu-tab" *ngFor="let job of jobs" (click)="selectJob(job.id)">
       <div class="menu-tab-title">{{ job.title }}</div>
       <div class="menu-tab-text">{{ job.text }}</div>
     </div>

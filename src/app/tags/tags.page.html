@@ -1,34 +1,63 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Tags</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="tags-content">
-  <ion-toolbar class="title">
-    <ion-text>Tag experiences</ion-text>
-  </ion-toolbar>
-  <ion-item lines="none" >
-    <ion-label position="stacked">Start Date</ion-label>
-    <ion-datetime display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
-  </ion-item>
-  <ion-item lines="none" >
-    <ion-label position="stacked">End Date</ion-label>
-    <ion-datetime display-format="MM DD YY" placeholder="Select Date"></ion-datetime>
-  </ion-item>
-  <ion-item >
-    <ion-label>Currenty working</ion-label>
-    <ion-checkbox slot="start"></ion-checkbox>
-  </ion-item>
-<!--  <ion-item lines="none">-->
-<!--    <ion-label position="stacked">Floating Label</ion-label>-->
-<!--&lt;!&ndash;    <ion-tags-input [(ngModel)]="tags"></ion-tags-input>&ndash;&gt;-->
-<!--  </ion-item>-->
-  <ion-item class="textarea" lines="none">
-    <ion-label position="stacked">Description</ion-label>
-    <ion-textarea rows="5" placeholder="Enter text"></ion-textarea>
-  </ion-item>
-  <ion-toolbar>
-    <ion-button expand="block" (click)="save()">Save</ion-button>
-  </ion-toolbar>
+  <div class="title">
+    <div class="title-l">Let’s color</div>
+    <div class="prisme"><img src="/assets/images/diamond.png" /><div></div></div>
+    <div class="title-r">Your story</div>
+  </div>
+
+  <div class="background"></div>
+
+  <div class="list">
+    <div class="list-tab" *ngFor="let item of activeSkills" [class.open]="item.check">
+      <div class="list-tab-block">
+        <div class="list-tab-header" (click)="openSkill(item.id)">
+          {{ item.title }}
+          <div class="list-tab-info">
+            <div>BALANCE</div>
+            <div [class.true]="item.balance > 0">$ {{ item.balance == 0 ? '0.00' : item.balance }}</div>
+          </div>
+        </div>
+        <div class="experience-block">
+          <div class="experience-tab" *ngFor="let exp of item.experiences">
+            <div class="experience-tab-name">{{ exp.title }}<i class="experience-edit" (click)="editTempData(exp, item.id)">&#9998;</i></div>
+            <div class="tab-block"><span>At</span> {{ exp.skill }}</div>
+            <div class="tab-block"><span>As a</span> {{ exp.company }}</div>
+            <div class="tab-block lists">Accomplished</div>
+            <div class="accomplished-block">
+              <div class="accomplished-li" *ngFor="let acc of exp.accomplished">{{ acc.title }}</div>
+            </div>
+          </div>
+          <div class="experience-add" (click)="popup = true; idSkill = item.id; expNew = true; ">Add experience</div>
+        </div>
+      </div>
+    </div>
+    <div class="list-border"></div>
+  </div>
+
+  <div class="list-add"><span>&#10010;</span>Add Skill</div>
+
+  <div class="popup" [class.open]="popup">
+    <input type="hidden" [(ngModel)]="typeSelect.id" value="typeSelect.id" />
+    <div class="popup-block">
+      <div class="dropdown-block" [class.open]="dropdown">
+        <div class="dropdown-title" (click)="dropdown = dropdown ? false : true">Select {{ typeSelect.title == '' ? 'experiences': typeSelect.title }}<span><i>&rsaquo;</i></span></div>
+        <div class="dropdown-types">
+          <div *ngFor="let type of types" (click)="typeSelect.title = type.title; typeSelect.type_id = type.id; dropdown = false">{{ type.title }}</div>
+        </div>
+      </div>
+      <div class="input-block">
+        <input type="text" placeholder="Where At Organization" value="{{ typeSelect.company }}" [(ngModel)]="typeSelect.company" />
+      </div>
+      <div class="input-block">
+        <input type="text" placeholder="As a Title" value="{{ typeSelect.skill }}" [(ngModel)]="typeSelect.skill" />
+      </div>
+      <div class="accomplished-block">
+        <input type="text" *ngFor="let acc of typeSelect.accomplished" value="{{ acc.title }}" [(ngModel)]="acc.title" placeholder="Accomplishment" />
+      </div>
+      <div class="add-acc" (click)="addAccomplished()">Add accomplished</div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="done" (click)="done()">Done</div>
+  </div>
+
 </ion-content>

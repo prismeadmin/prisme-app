@@ -4,8 +4,8 @@
   </ion-toolbar>
 
   <div class="select-item">
-    <div class="menu-tab-title">{{ skills[jobId].title }}</div>
-    <div class="menu-tab-text">{{ skills[jobId].text }}</div>
+    <div class="menu-tab-title">{{ activeSkills.title }}</div>
+    <div class="menu-tab-text">{{ activeSkills.text }}</div>
   </div>
 
   <ion-toolbar class="title">
@@ -13,7 +13,7 @@
   </ion-toolbar>
 
   <div (swipe)="swipeEvent($event)" class="swipe-block">
-     <div class="swipe" (pan)="swipePan($event, i)" (panend)="swipeEnd($event)" *ngFor="let skill of skills[jobId].skills; let i = index">
+     <div class="swipe" (pan)="swipePan($event, i)" (panend)="swipeEnd($event)" *ngFor="let skill of activeSkills.skills; let i = index">
        <div [class.check]="skill.check">{{ skill.title }}<span *ngIf="skill.check">&#10004;</span></div>
      </div>
    </div>
