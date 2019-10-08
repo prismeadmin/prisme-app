@@ -21,6 +21,8 @@
     text-align: center;
     font-weight: bold;
     font-size: 6vw;
+    z-index: 11;
+    position: relative;
 
     img{
       width: 10vw;
@@ -36,11 +38,12 @@
   }
 
   .binoculars{
-    width: 100%;
+    width: 90%;
     height: auto;
     position: absolute;
-    left: 0;
-    bottom: 30vw;
+    left: 5%;
+    bottom: 20%;
+    z-index: 9;
   }
 
   .select{
@@ -50,6 +53,8 @@
     margin-top: 10vw;
     position: relative;
     left: 5%;
+    z-index: 10;
+    background: #FFF;
 
     .select-title{
       width: 100%;
