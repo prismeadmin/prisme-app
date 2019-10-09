@@ -1,33 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>main</ion-title>
+    <ion-title><img src="../assets/images/logo.png" /></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="canvas">
+    <canvas id="cvsId"></canvas>
+    <div></div>
+  </div>
 </ion-content>
-<ion-tabs>
+
+<ion-tabs class="footer">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="goals">
-      <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-      <ion-label>Goals</ion-label>
-      <ion-badge>6</ion-badge>
+    <ion-tab-button>
+      <img src="../assets/images/QUALITY.svg" />
+      <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="dashboard">
-      <ion-icon name="ios-speedometer"></ion-icon>
-      <ion-label>Dashboard</ion-label>
+    <ion-tab-button>
+      <img src="../assets/images/TARGET.svg" />
+      <ion-label>Explore</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="user">
+    <ion-tab-button>
+      <img src="../assets/images/SOLUTIONS.svg" />
+      <ion-label>Collect</ion-label>
+      <div>10</div>
+    </ion-tab-button>
+
+    <ion-tab-button class="user">
       <ion-icon name="ios-contact"></ion-icon>
       <ion-label>Account</ion-label>
     </ion-tab-button>
-
-<!--    <ion-tab-button tab="about">-->
-<!--      <ion-icon name="information-circle"></ion-icon>-->
-<!--      <ion-label>About</ion-label>-->
-<!--    </ion-tab-button>-->
   </ion-tab-bar>
 </ion-tabs>
