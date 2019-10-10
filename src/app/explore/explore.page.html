@@ -4,23 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="canvas">
-    <canvas id="cvsId"></canvas>
-    <div></div>
-  </div>
-  <div class="ion-slides">
-    <ion-slides [options]="sliderConfig">
-      <ion-slide *ngFor="let item of skills">
-        <div class="ion-slide" [attr.color-item]="red">{{item.title}}</div>
-      </ion-slide>
-    </ion-slides>
-  </div>
+<ion-content class="ion-content">
+
 </ion-content>
 
 <ion-tabs class="footer">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="home()" class="active">
+    <ion-tab-button (click)="home()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
         <path d="M64 110.989a2.004 2.004 0 01-1.445-.617l-62-64.827A2 2 0 012 42.163h124a2 2 0 011.445 3.382l-62 64.827a2 2 0 01-1.445.617zM6.68 46.163L64 106.096l57.319-59.933H6.68z" />
         <path d="M64 110.989a2 2 0 01-1.843-1.223L34.826 44.939l3.686-1.554L64 103.842l22.347-52.996 3.686 1.554-24.189 57.367A2.002 2.002 0 0164 110.989z" />
@@ -34,7 +24,7 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button (click)="explore()">
+    <ion-tab-button (click)="explore()" class="active">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
         <path
           d="M46.776 72.1c-.001 0 0 0 0 0h-.016c-16.033 0-29.079-13.241-29.092-29.517.012-16.269 13.06-29.501 29.086-29.501 16.039.016 29.088 13.256 29.09 29.515C75.842 58.864 62.801 72.1 46.776 72.1zm-.024-55.019c-13.82 0-25.074 11.44-25.084 25.501C21.679 56.651 32.931 68.1 46.75 68.1h.025c13.821 0 25.066-11.44 25.068-25.504-.001-14.055-11.257-25.501-25.091-25.515z" />
