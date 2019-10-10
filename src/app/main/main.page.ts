@@ -1,5 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-main',
@@ -32,8 +33,9 @@ export class MainPage implements OnInit {
   Y: any = Array;
   C: any = Array;
   i: any = Number;
+  skillId: any;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public storage: Storage) {
     this.skills = [
         {title: 'Analytical', id: 1, check: false, color: '#CD5C5C'},
         {title: 'Active Listening', id: 2, check: false, color: '#C71585'},
@@ -100,5 +102,23 @@ export class MainPage implements OnInit {
 
   explore() {
     this.router.navigate(['/explore']);
+  }
+
+  tags(id = null) {
+    this.storage.ready().then(() => {
+      let skillId = [];
+      if (id == null) {
+          this.skills.forEach(function(item){
+            skillId.push(item.id);
+          })
+      } else {
+        this.skills.forEach(function(item){
+          if (item.id == id) skillId.push(item.id);
+        })
+      }
+      this.storage.set('skillId', skillId).then(() => {
+        this.router.navigate(['/tags']);
+      })
+    });
   }
 }

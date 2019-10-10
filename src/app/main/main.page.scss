@@ -13,6 +13,7 @@ ion-title{
   left: 15%;
   margin-top: 25%;
   overflow: hidden;
+  z-index: 99999;
 
   &:after, &:before{
     content: '';
