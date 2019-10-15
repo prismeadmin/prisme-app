@@ -1,0 +1,59 @@
+<ion-content class="modal">
+
+  <div class="modal-block">
+    <ion-button expand="block" (click)="dismiss()" shape="undefined">Close</ion-button>
+
+    <ion-toolbar class="label">
+      <ion-label>Create progress towards<br />your current goal</ion-label>
+    </ion-toolbar>
+  </div>
+
+  <ion-item class="select" lines="none">
+    <ion-label>{{select}}</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+
+  <ion-grid class="grid">
+    <ion-row>
+      <ion-col>
+        <div>1</div>
+      </ion-col>
+      <ion-col>
+        <div>2</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item class="select" lines="none" *ngFor="let item of tasks">
+    <ion-label>{{item.name}}</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+
+  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()">{{defTasks.name}}</ion-button>
+
+  <ion-grid class="smile">
+    <ion-row>
+      <ion-col (click)="rateSet('bad')">
+        <img src="../assets/images/bad.png" *ngIf="rate == 'bad'" />
+        <img src="../assets/images/bad-h.png" *ngIf="rate != 'bad'" />
+        <ion-text>Bad</ion-text>
+      </ion-col>
+      <ion-col (click)="rateSet('okay')">
+        <img src="../assets/images/okay.png" *ngIf="rate == 'okay'" />
+        <img src="../assets/images/okay-h.png" *ngIf="rate != 'okay'" />
+        <ion-text>Okay</ion-text>
+      </ion-col>
+      <ion-col (click)="rateSet('good')">
+        <img src="../assets/images/good.png" *ngIf="rate == 'good'" />
+        <img src="../assets/images/good-h.png" *ngIf="rate != 'good'" />
+        <ion-text>Good</ion-text>
+      </ion-col>
+      <ion-col (click)="rateSet('great')">
+        <img src="../assets/images/great.png" *ngIf="rate == 'great'" />
+        <img src="../assets/images/great-h.png" *ngIf="rate != 'great'" />
+        <ion-text>Great</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

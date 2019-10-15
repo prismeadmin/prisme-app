@@ -5,6 +5,15 @@
   --page-background: var(--app-background-shade);
 }
 
+#crystall{
+  width: 10vw;
+  height: 10vw;
+  position: absolute;
+  right: 24.5vw;
+  top: -2vw;
+  background: transparent;
+}
+
 // Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
 .jobtitle-content {
   --background: left top / 100% auto no-repeat fixed url("/back-t.png"),

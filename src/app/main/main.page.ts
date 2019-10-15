@@ -49,7 +49,7 @@ export class MainPage implements OnInit {
 
   ngOnInit() {
     //Slides.ionSlideProgress.subscribe(progress => this.onProgress(progress));
-
+    /*
     this.cvs = document.getElementById("cvsId");
     this.ctx = this.cvs.getContext("2d");
     this.w = this.cvs.width;
@@ -84,6 +84,7 @@ export class MainPage implements OnInit {
   			this.ctx.fillRect(this.x , this.y , 1, 1);
       }
     }
+    */
   }
 
   randgp(max) {

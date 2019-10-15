@@ -1,10 +1,11 @@
 <ion-content class="jobtitle-content">
   <div class="title">
-    <div>Start your <img src="/assets/images/diamond.png" /></div>
+    <div>Start your <img src="/assets/images/logo-no-bg.png" /></div>
     <div>exploration</div>
   </div>
   <div class="select" *ngIf="!select" (click)="select = true">
-    <div class="select-title">Select<div class="select-icon-inner"></div></div>
+    <div class="select-title">Select<div class="select-icon-inner"></div>
+    </div>
   </div>
   <div class="select-menu" *ngIf="select">
     <div class="menu-tab" *ngFor="let job of jobs" (click)="selectJob(job.id)">

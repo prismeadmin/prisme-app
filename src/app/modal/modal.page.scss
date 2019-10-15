@@ -1,0 +1,49 @@
+ion-button{
+  position: relative;
+  margin: 1rem 1rem;
+  z-index: 100;
+  --border-radius: 0;
+}
+
+.label{
+  position: relative;
+  margin: 1rem auto;
+  text-align: center;
+  font-weight: 550;
+  color: #666;
+  line-height: 1.5rem;
+}
+
+.select{
+  margin: 1.5rem auto;
+}
+
+.grid ion-col{
+  padding: 1.5rem;
+
+  div{
+    border: 1px solid #DDD;
+    min-height: 6rem;
+    text-align: center;
+    line-height: 6rem;
+  }
+}
+
+.smile{
+  position: relative;
+  z-index: 999;
+
+  ion-col{
+    text-align: center;
+    padding: 1rem;
+
+    img{
+      margin-bottom: 0.5rem;
+    }
+
+    ion-text{
+      position: relative;
+      font-weight: 550;
+    }
+  }
+}

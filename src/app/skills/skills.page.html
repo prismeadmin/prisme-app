@@ -13,11 +13,11 @@
   </ion-toolbar>
 
   <div (swipe)="swipeEvent($event)" class="swipe-block">
-     <div class="swipe" (pan)="swipePan($event, i)" (panend)="swipeEnd($event)" *ngFor="let skill of activeSkills.skills; let i = index">
-       <div [class.check]="skill.check">{{ skill.title }}<span *ngIf="skill.check">&#10004;</span></div>
-     </div>
-   </div>
+    <div class="swipe" (pan)="swipePan($event, i)" (panend)="swipeEnd($event)" *ngFor="let skill of activeSkills.skills; let i = index">
+      <div [class.check]="skill.check" class="swipe-tab">{{ skill.title }}<span *ngIf="skill.check">&#10004;</span></div>
+    </div>
+  </div>
 
-   <div class="next" (click)="onClick()" *ngIf="next">&#10149;</div>
+  <div class="next" (click)="onClick()" *ngIf="next">&#10149;</div>
 
 </ion-content>
