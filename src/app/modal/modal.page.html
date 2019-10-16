@@ -9,48 +9,91 @@
   </div>
 
   <ion-item class="select" lines="none">
+    <ion-checkbox [(ngModel)]="task.type.checked" color="medium"></ion-checkbox>
     <ion-label>{{select}}</ion-label>
-    <ion-checkbox color="primary" slot="start"></ion-checkbox>
   </ion-item>
 
-  <ion-grid class="grid">
+  <div class="animate" *ngIf="animate"></div>
+
+  <ion-grid class="grid" (click)="startBone()">
     <ion-row>
       <ion-col>
-        <div>1</div>
+        <div class="grid-block">
+          <div class="bone bone1" *ngIf="bone == 1">
+            <div></div>
+          </div>
+          <div class="bone bone2" *ngIf="bone == 2">
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone3" *ngIf="bone == 3">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone4" *ngIf="bone == 4">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone5" *ngIf="bone == 5">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone6" *ngIf="bone == 6">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       </ion-col>
       <ion-col>
-        <div>2</div>
+        <div class="grid-block">
+          <div class="bones-text" *ngIf="bone == 1">Learn</div>
+          <div class="bones-text" *ngIf="bone == 2">Refine</div>
+          <div class="bones-text" *ngIf="bone == 3">Action</div>
+          <div class="bones-text" *ngIf="bone == 4">Social</div>
+          <div class="bones-text" *ngIf="bone == 5">Fun</div>
+          <div class="bones-text" *ngIf="bone == 6">Wild Card</div>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-item class="select" lines="none" *ngFor="let item of tasks">
-    <ion-label>{{item.name}}</ion-label>
-    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  <ion-item class="select" lines="none" *ngIf="task.task.text">
+    <ion-checkbox [(ngModel)]="task.task.checked" color="medium"></ion-checkbox>
+    <ion-label>{{task.task.text}}</ion-label>
   </ion-item>
 
-  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()">{{defTasks.name}}</ion-button>
+  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()">New Task</ion-button>
 
   <ion-grid class="smile">
     <ion-row>
       <ion-col (click)="rateSet('bad')">
-        <img src="../assets/images/bad.png" *ngIf="rate == 'bad'" />
-        <img src="../assets/images/bad-h.png" *ngIf="rate != 'bad'" />
+        <img src="../assets/images/bad.png" *ngIf="task.rate == 'bad'" />
+        <img src="../assets/images/bad-h.png" *ngIf="task.rate != 'bad'" />
         <ion-text>Bad</ion-text>
       </ion-col>
       <ion-col (click)="rateSet('okay')">
-        <img src="../assets/images/okay.png" *ngIf="rate == 'okay'" />
-        <img src="../assets/images/okay-h.png" *ngIf="rate != 'okay'" />
+        <img src="../assets/images/okay.png" *ngIf="task.rate == 'okay'" />
+        <img src="../assets/images/okay-h.png" *ngIf="task.rate != 'okay'" />
         <ion-text>Okay</ion-text>
       </ion-col>
       <ion-col (click)="rateSet('good')">
-        <img src="../assets/images/good.png" *ngIf="rate == 'good'" />
-        <img src="../assets/images/good-h.png" *ngIf="rate != 'good'" />
+        <img src="../assets/images/good.png" *ngIf="task.rate == 'good'" />
+        <img src="../assets/images/good-h.png" *ngIf="task.rate != 'good'" />
         <ion-text>Good</ion-text>
       </ion-col>
       <ion-col (click)="rateSet('great')">
-        <img src="../assets/images/great.png" *ngIf="rate == 'great'" />
-        <img src="../assets/images/great-h.png" *ngIf="rate != 'great'" />
+        <img src="../assets/images/great.png" *ngIf="task.rate == 'great'" />
+        <img src="../assets/images/great-h.png" *ngIf="task.rate != 'great'" />
         <ion-text>Great</ion-text>
       </ion-col>
     </ion-row>

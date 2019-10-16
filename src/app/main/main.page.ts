@@ -96,15 +96,7 @@ export class MainPage implements OnInit {
     if(mt==2) {return Math.abs(x) + Math.abs(y)}
     if(mt==3) {return(Math.pow(Math.pow(Math.abs(x),3) + Math.pow(Math.abs(y),3),0.33333))}
   }
-
-  home() {
-    this.router.navigate(['/main']);
-  }
-
-  explore() {
-    this.router.navigate(['/explore']);
-  }
-
+  
   tags(id = null) {
     this.storage.ready().then(() => {
       let skillId = [];
@@ -121,5 +113,25 @@ export class MainPage implements OnInit {
         this.router.navigate(['/tags']);
       })
     });
+  }
+
+  home () {
+    this.router.navigate(['/main']);
+  }
+
+  explore () {
+    this.router.navigate(['/explore']);
+  }
+
+  collect () {
+    this.router.navigate(['/collect']);
+  }
+
+  user () {
+    this.router.navigate(['/user']);
+  }
+
+  more () {
+    this.router.navigate(['/more']);
   }
 }

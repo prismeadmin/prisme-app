@@ -42,21 +42,21 @@ export class ExplorePage implements OnInit {
       const actionSheet = await this.actionSheetController.create({
         header: 'Select One',
         buttons: [{
-          text: 'Delete',
+          text: 'Goal 1',
           handler: () => {
-            this.select = 'Delete';
+            this.select = 'Goal 1';
             this.presentModal();
           }
         }, {
-          text: 'Share',
+          text: 'Goal 2',
           handler: () => {
-            this.select = 'Share';
+            this.select = 'Goal 2';
             this.presentModal();
           }
         }, {
-          text: 'Play',
+          text: 'Goal 3',
           handler: () => {
-            this.select = 'Play';
+            this.select = 'Goal 3';
             this.presentModal();
           }
         }, {
@@ -76,10 +76,30 @@ export class ExplorePage implements OnInit {
         }
       });
 
-      modal.onDidDismiss().then(() => {
-
+      modal.onDidDismiss().then((result) => {
+        console.log(result);
       });
 
       return await modal.present();
     }
+
+    home () {
+      this.router.navigate(['/main']);
+    }
+
+    explore () {
+      this.router.navigate(['/explore']);
+    }
+
+    collect () {
+      this.router.navigate(['/collect']);
+    }
+
+    user () {
+      this.router.navigate(['/user']);
+    }
+
+    more () {
+      this.router.navigate(['/more']);
+    }    
 }

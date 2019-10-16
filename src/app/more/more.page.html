@@ -1,25 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><img src="../assets/images/logo.png" /></ion-title>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="canvas">
-    <img src="/assets/images/logo-bg.png" id="cvsId" (click)="tags(null)" />
-  </div>
-  <div class="ion-slides">
-    <ion-slides [options]="sliderConfig">
-      <ion-slide *ngFor="let item of skills">
-        <div class="ion-slide" [attr.color-item]="red" (click)="tags(item.id)">{{item.title}}</div>
-      </ion-slide>
-    </ion-slides>
-  </div>
+<ion-content class="content">
+  <ion-item>
+    <ion-icon name="ios-menu"></ion-icon>
+    <ion-label>Journey</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="ios-menu"></ion-icon>
+    <ion-label>Interview</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="ios-menu"></ion-icon>
+    <ion-label>Community</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="ios-menu"></ion-icon>
+    <ion-label>Coach</ion-label>
+  </ion-item>
 </ion-content>
 
 <div class="footer">
   <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="home()" class="active">
+    <ion-tab-button (click)="home()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
         <path d="M64 110.989a2.004 2.004 0 01-1.445-.617l-62-64.827A2 2 0 012 42.163h124a2 2 0 011.445 3.382l-62 64.827a2 2 0 01-1.445.617zM6.68 46.163L64 106.096l57.319-59.933H6.68z" />
         <path d="M64 110.989a2 2 0 01-1.843-1.223L34.826 44.939l3.686-1.554L64 103.842l22.347-52.996 3.686 1.554-24.189 57.367A2.002 2.002 0 0164 110.989z" />
@@ -72,7 +78,7 @@
       <ion-label>Account</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button class="more" (click)="more()">
+    <ion-tab-button class="more" class="active" (click)="more()">
       <ion-icon name="ios-menu"></ion-icon>
       <ion-label>More</ion-label>
     </ion-tab-button>

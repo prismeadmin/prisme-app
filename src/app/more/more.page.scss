@@ -1,39 +1,12 @@
-.ion-content{
-  --background: left top / 100% auto no-repeat url("../../assets/images/explore.jpg");
-  --padding-start: 1rem;
-  --padding-end: 1rem;
-  --padding-bottom: 1rem;
+ion-title{
+  background: #FF8000;
+  color: #FFF;
+}
 
-  ion-button{
-    position: relative;
-    margin-top: 1rem;
-    z-index: 100;
-    margin-bottom: 1rem;
-    --border-radius: 1.3vw;
-  }
-
-  .group{
-    z-index: 999;
-    position: relative;
-
-    ion-item{
-      --border-radius: 1.3vw;
-      margin: 0 0.1rem;
-      margin-top: 0.5rem;
-      --background: rgba(120,120,120,0.2);
-      &.active{
-        --background: rgba(241,112,34,0.4);
-      }
-      &.active-sub{
-        --background: rgba(241,112,34,0.2);
-      }
-      img{
-        position: absolute;
-        right: 1rem;
-        top: 20%;
-        height: 60%;
-      }
-    }
+.content{
+  --padding-top: 1rem;
+  ion-label{
+    padding-left: 1rem;
   }
 }
 

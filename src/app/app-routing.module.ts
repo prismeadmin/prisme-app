@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'tags', loadChildren: './tags/tags.module' },  { path: 'main', loadChildren: './main/main.module#MainPageModule' },
   { path: 'account-activation', loadChildren: './account-activation/account-activation.module#AccountActivationPageModule' },
   { path: 'explore', loadChildren: './explore/explore.module#ExplorePageModule' },
-  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' }
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+  { path: 'more', loadChildren: './more/more.module#MorePageModule' }
 
 ];
 @NgModule({

@@ -2,7 +2,7 @@ ion-button{
   position: relative;
   margin: 1rem 1rem;
   z-index: 100;
-  --border-radius: 0;
+  --border-radius: 1.3vw;
 }
 
 .label{
@@ -14,18 +14,174 @@ ion-button{
   line-height: 1.5rem;
 }
 
-.select{
-  margin: 1.5rem auto;
+.animate{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(255,255,255,0.1);
+  z-index: 999999;
 }
 
-.grid ion-col{
-  padding: 1.5rem;
+.select{
+  margin: 0rem auto;
+  ion-checkbox{
+    --border-radius: 1.3vw;
+    --size: 9vw;
+  }
+  ion-label{
+    background: #EEE;
+    padding: 0.4rem 0;
+    padding-left: 1rem;
+    border-radius: 1.3vw;
+    margin-left: 0vw;
+  }
+}
 
-  div{
-    border: 1px solid #DDD;
-    min-height: 6rem;
-    text-align: center;
-    line-height: 6rem;
+.grid{
+  padding: 1rem 0;
+  ion-col{
+    padding: 1rem;
+    position: relative;
+    .grid-block{
+      height: 6rem;
+      text-align: center;
+      line-height: 6rem;
+      position: relative;
+      .bone{
+        width: 6rem;
+        height: 6rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: 1px solid #DDD;
+        border-radius: 1.3vw;
+        div{
+          width: 1rem;
+          height: 1rem;
+          position: absolute;
+          background: #555;
+          box-shadow: inset 0.3vw 0.3vw 0.3vw #333;
+          border-radius: 50%;
+        }
+        &.bone1{
+          div{
+            left: 50%;
+            top: 50%;
+            margin-left: -0.5rem;
+            margin-top: -0.5rem;
+          }
+        }
+        &.bone2{
+          div:nth-child(1){
+            left: 20%;
+            top: 20%;
+          }
+          div:nth-child(2){
+            right: 20%;
+            bottom: 20%;
+          }
+        }
+        &.bone3{
+          div:nth-child(1){
+            left: 20%;
+            top: 20%;
+          }
+          div:nth-child(2){
+            left: 50%;
+            top: 50%;
+            margin-left: -0.5rem;
+            margin-top: -0.5rem;
+          }
+          div:nth-child(3){
+            right: 20%;
+            bottom: 20%;
+          }
+        }
+        &.bone4{
+          div:nth-child(1){
+            left: 20%;
+            top: 20%;
+          }
+          div:nth-child(2){
+            right: 20%;
+            top: 20%;
+          }
+          div:nth-child(3){
+            left: 20%;
+            bottom: 20%;
+          }
+          div:nth-child(4){
+            right: 20%;
+            bottom: 20%;
+          }
+        }
+        &.bone5{
+          div:nth-child(1){
+            left: 20%;
+            top: 20%;
+          }
+          div:nth-child(2){
+            right: 20%;
+            top: 20%;
+          }
+          div:nth-child(3){
+            left: 20%;
+            bottom: 20%;
+          }
+          div:nth-child(4){
+            right: 20%;
+            bottom: 20%;
+          }
+          div:nth-child(5){
+            left: 50%;
+            top: 50%;
+            margin-left: -0.5rem;
+            margin-top: -0.5rem;
+          }
+        }
+        &.bone6{
+          div:nth-child(1){
+            left: 20%;
+            top: 20%;
+          }
+          div:nth-child(2){
+            left: 50%;
+            top: 20%;
+            margin-left: -0.5rem;
+          }
+          div:nth-child(3){
+            right: 20%;
+            top: 20%;
+          }
+          div:nth-child(4){
+            left: 20%;
+            bottom: 20%;
+          }
+          div:nth-child(5){
+            left: 50%;
+            bottom: 20%;
+            margin-left: -0.5rem;
+          }
+          div:nth-child(6){
+            right: 20%;
+            bottom: 20%;
+          }
+        }
+      }
+      .bones-text{
+        width: 6rem;
+        height: 6rem;
+        line-height: 6rem;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px solid #DDD;
+        border-radius: 1.3vw;
+      }
+    }
   }
 }
 
