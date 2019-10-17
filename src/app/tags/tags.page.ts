@@ -19,50 +19,52 @@ export class TagsPage implements OnInit {
   idSkill: any = 0;
   expNew: any = false;
 
+  modalItemView: any = false;
+  itemSkill: any = [];
+
+  modalExpView: any = false;
+  experiences: any = {};
+  selectView: any = false;
+
   constructor(public router: Router, public storage: Storage) {
-    this.typeSelectDef = {title: '', id: 0, type_id: 0, skill: '', company: '', accomplished: []};
-    this.typeSelect = this.typeSelectDef;
+    this.itemSkill = [{experiences: []}]
+
+    this.experiences = {title: 'Professional', id: 0, type_id: 1, skill: '', company: '', accomplished: []};
+
+    this.typeSelect = this.experiences;
+
     this.types = [
       {title: 'Professional', id: 1},
       {title: 'Volunteer', id: 2},
     ];
-    this.skills = [
-        {
-            title: 'Product', id: 1, text: 'Product',
-            skills: [
-                {title: 'Analytical', id: 1, check: false, balance: 0.05,
-                  experiences: [
-                    {title: 'Professional', id: 1, type_id: 1, skill: 'Artistic music', company: 'COO',
-                      accomplished: [
-                        {title: 'Coordinated vendor calls'},
-                        {title: 'New methods for defusing conflict'}
-                      ]
-                    },
-                    {title: 'Volunteer', id: 2, type_id: 2, skill: '1 Million Cups', company: 'Organizer',
-                      accomplished: [
-                        {title: 'Managed irtern feedback'},
-                      ]
-                    }
-                  ]
-                },
-                {title: 'Active Listening', id: 2, check: false, balance: 0.00, experiences: []},
-                {title: 'Collaboration', id: 3, check: false, balance: 0.00, experiences: []},
-                {title: 'Negotiating', id: 4, check: false, balance: 0.00, experiences: []},
-                {title: 'Teamwork', id: 5, check: false, balance: 0.00, experiences: []},
-                {title: 'Communication', id: 6, check: false, balance: 0.00, experiences: []},
-                {title: 'Problem Solving', id: 7, check: false, balance: 0.00, experiences: []}
+
+    this.skills = [{
+      title: 'Product', id: 1, text: 'Product',
+        skills: [{
+          title: 'Analytical', id: 1, check: false, balance: 0.05,
+            experiences: [
+              {
+                title: 'Professional', id: 1, type_id: 1, skill: 'Artistic music', company: 'COO',
+                accomplished: [
+                  {
+                    title: 'Coordinated vendor calls'
+                  },
+                  {
+                    title: 'New methods for defusing conflict'
+                  }
+                ]
+              },
+              {
+                title: 'Volunteer', id: 2, type_id: 2, skill: '1 Million Cups', company: 'Organizer',
+                accomplished: [
+                  {
+                    title: 'Managed irtern feedback'
+                  },
+                ]
+              }
             ]
-        },
-        {
-            title: 'Develop', id: 2, text: 'Develop',
-            skills: [
-                {title: 'Analytical', id: 1, check: false},
-                {title: 'Active Listening', id: 2, check: false},
-                {title: 'Collaboration', id: 3, check: false},
-                {title: 'Negotiating', id: 4, check: false},
-            ]
-        },
-    ];
+        }]
+    }];
   }
 
   ngOnInit() {
@@ -84,9 +86,12 @@ export class TagsPage implements OnInit {
     });
   }
 
-  openSkill(idSkill) {
-    this.activeSkills = this.activeSkills.filter(function(item){
-      if (idSkill == item.id) {
+  openItem(id) {
+    const that = this;
+    that.modalItemView = true;
+    that.activeSkills = this.activeSkills.filter(function(item){
+      if (id == item.id) {
+        that.itemSkill.push(item);
         item.check = item.check ? false : true;
       } else {
         item.check = false;
@@ -95,6 +100,49 @@ export class TagsPage implements OnInit {
     })
   }
 
+  closeItem() {
+    this.itemSkill = [{experiences: []}];
+    this.modalItemView = false;
+  }
+
+  addExp() {
+    const title = '';
+    const type_id = 0;
+    this.types.forEach(function(item, i){
+      if (i == 0) {
+        this.title = item.title;
+        this.type_id = item.id;
+      }
+    })
+    this.modalExpView = true;
+    this.experiences = {title: '', id: title, type_id: type_id, skill: '', company: '', accomplished: []};
+  }
+
+  closeExp(){
+    this.experiences = {};
+    this.modalExpView = false;
+  }
+
+  addAcc() {
+    const acc = null;
+    if (this.experiences.accomplished.length < 5) {
+      this.experiences.accomplished.push(acc);
+    }
+  }
+
+  addType(type) {
+    this.experiences.title = type.title;
+    this.experiences.type_id = type.type_id;
+    this.selectView = false;
+  }
+
+  saveExp(){
+    this.skills = this.skills.filter(function(item, i){
+      
+    })
+  }
+
+  /*
   editTempData(item, id) {
     this.expNew = false;
     this.idSkill = id;
@@ -120,7 +168,7 @@ export class TagsPage implements OnInit {
             that.accomplished = that.accomplished.filter(function(acc){
               if (acc.title != '') return acc;
             })
-            that.typeSelect.accomplished = that.accomplished;     
+            that.typeSelect.accomplished = that.accomplished;
             item.experiences.push(that.typeSelect);
           } else {
             item.experiences = item.experiences.filter(function(exp){
@@ -142,7 +190,7 @@ export class TagsPage implements OnInit {
       this.typeSelect.assign(this.typeSelectDef);
     }
   }
-
+  */
   save() {
       this.router.navigate(['/main']);
   }

@@ -1,70 +1,257 @@
-// Custom variables
-// Note:  These ones were added by us and have nothing to do with Ionic CSS Custom Properties
-:host {
-  --page-margin: var(--app-broad-margin);
-  --page-background: var(--app-background-shade);
+ion-title{
+  background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  div{
+    width: 33.3%;
+    float: left;
+    position: relative;
+    font-size: 1.1rem;
+    color: #FFF;
+    padding-top: 0.45rem;
+    &.l{
+      text-align: left;
+    }
+    &.c{
+      padding-top: 0;
+      img{
+        height: 1.8rem;
+        position: relative;
+        margin: 0 auto;
+        top: 0.2rem;
+      }
+    }
+    &.r{
+      text-align: center;
+    }
+  }
 }
 
-// Note:  All the CSS variables defined below are overrides of Ionic elements CSS Custom Properties
+.clear{
+  clear: both;
+}
+
 .tags-content {
   background: linear-gradient(270deg, #ffffff, #eeeeee);
   background-size: 400% 400%;
   animation: AnimationName 30s ease infinite;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  --padding-bottom: 1rem;
 
-  .title{
+  .item-list{
     width: 100%;
-    height: 20vw;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 11;
-
-    .title-l{
-      background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
-      width: calc(50% - 10vw);
-      height: 20vw;
-      position: relative;
-      float: left;
-      text-align: right;
-      line-height: 20vw;
-      padding-right: 5vw;
-      font-size: 6vw;
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 1.3vw;
+    &.open{
+      background: rgba(241, 112, 34, 0.2);
     }
-    .prisme{
-      width: 20vw;
-      height: 20vw;
-      position: absolute;
-      left: 50%;
-      top: 0;
-      margin-left: -10vw;
-      background: #FFF;
-      border: 1px solid #DDD;
-      border-top: 0;
-
-      img{
-        width: 10vw;
+    .item-list-header{
+      width: 100%;
+      padding: 0.8rem 1rem;
+      .item-list-name{
+        width: 60%;
+        float: left;
         position: relative;
-        left: 50%;
-        margin-left: -5vw;
-        top: 5vw;
+        font-size: 1rem;
+        color: #666;
+      }
+      .item-list-balance{
+        width: 40%;
+        float: left;
+        position: relative;
+        div{
+          &:nth-child(1){
+            text-align: right;
+            font-size: 0.6rem;
+            color: #333;
+          }
+          &:nth-child(2){
+            text-align: right;
+            font-size: 0.8rem;
+            padding-top: 0.5rem;
+            color: #F17022;
+            font-weight: bold;
+          }
+        }
       }
     }
-    .title-r{
-      background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
-      width: calc(50% - 10vw);
-      height: 20vw;
-      position: relative;
-      float: right;
-      text-align: left;
-      line-height: 20vw;
-      padding-left: 5vw;
-      font-size: 6vw;
+  }
+
+  ion-button{
+    position: relative;
+    margin: 1rem 0;
+    z-index: 100;
+    --border-radius: 1.3vw;
+  }
+
+  .modal{
+    width: 100%;
+    height: calc(100% - 2.8rem);
+    position: fixed;
+    left: 110%;
+    top: 2.8rem;
+    background: #FFF;
+    z-index: 999;
+    box-shadow: 0 0 1px #EEE;
+    transition: 0.3s;
+    overflow-y: auto;
+    padding: 1rem;
+    &.open{
+      left: 0;
+    }
+    .experience{
+      margin-top: 0;
+    }
+    .expirence-list{
+      width: 100%;
+      margin-bottom: 1rem;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 1.3vw;
+      .expirence-list-header{
+        width: 100%;
+        padding: 1rem 1rem;
+        position: relative;
+        font-size: 1rem;
+        color: #444;
+        text-shadow: 1px 1px 1px #FFF;
+        i{
+          position: absolute;
+          right: 1rem;
+          top: 0.55rem;
+          font-size: 1.4rem;
+          color: #F17022;
+        }
+      }
+      .expirence-list-tab{
+        width: 100%;
+        padding: 1rem;
+        &:nth-child(2){
+          border-top: 1px solid #FFF;
+        }
+        div{
+          font-size: 0.9rem;
+          color: #666;
+          text-shadow: 1px 1px 1px #FFF;
+          &.l{
+            width: 30%;
+            text-align: left;
+            position: relative;
+            float: left;
+            font-weight: 550;
+          }
+          &.r{
+            width: 70%;
+            text-align: right;
+            position: relative;
+            float: left;
+            font-style: italic;
+          }
+          &.t{
+              font-weight: 550;
+          }
+          &.b{
+            padding-top: 0.5rem;
+            div{
+              padding-top: 0.5rem;
+              padding-left: 1rem;
+              font-style: italic;
+              position: relative;
+              &:after{
+                content: '';
+                width: 0.4rem;
+                height: 0.4rem;
+                position: absolute;
+                left: 0;
+                top: 0.8rem;
+                border-radius: 50%;
+                background: #666;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.modal-edit{
+      z-index: 1000;
+      .wrap{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 9;
+      }
+      .select{
+        width: 100%;
+        margin-bottom: 1rem;
+        position: relative;
+        .select-name{
+          width: 100%;
+          position: relative;
+          padding: 1rem;
+          border: 1px solid #DDD;
+          border-radius: 1.3vw;
+          font-size: 1rem;
+          color: #777;
+        }
+        .select-popup{
+          width: 100%;
+          height: auto;
+          position: absolute;
+          top: calc(100% + 0.2rem);
+          left: 0;
+          background: #FFF;
+          border: 1px solid #DDD;
+          border-radius: 1.3vw;
+          box-shadow: 0 0.3vw 0.7vw #CCC;
+          z-index: 10;
+          div{
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            color: #555;
+          }
+        }
+      }
+      .input{
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+        input{
+          width: 100%;
+          padding: 1rem;
+          font-size: 1rem;
+          border: 1px solid #DDD;
+          border-radius: 1.3vw;
+          &:focus::placeholder{
+            color: #FFF;
+          }
+        }
+      }
+      .accomplished-list{
+        width: 100%;
+        height: auto;
+        input{
+          width: 100%;
+          padding: 1rem;
+          font-size: 1rem;
+          border: 1px solid #DDD;
+          border-radius: 1.3vw;
+          margin-bottom: 1rem;
+          &:focus::placeholder{
+            color: #FFF;
+          }
+        }
+      }
     }
   }
 
   .list{
     width: 100%;
-    padding-top: 28vw;
+    padding-top: 1rem;
 
     .list-border{
       width: calc(100% - (12vw - 2px));
@@ -308,7 +495,7 @@
         .dropdown-title.drop{
           background: #EEE;
         }
-        
+
         .dropdown-types{
           width: 100%;
           height: auto;
