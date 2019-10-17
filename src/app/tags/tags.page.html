@@ -10,37 +10,8 @@
 
 <ion-content class="tags-content">
 
-  <!--
-  <div class="list">
-    <div class="list-tab" *ngFor="let item of activeSkills" [class.open]="item.check">
-      <div class="list-tab-block">
-        <div class="list-tab-header" (click)="openItem(item.id)">
-          {{ item.title }}
-          <div class="list-tab-info">
-            <div>BALANCE</div>
-            <div [class.true]="item.balance > 0">$ {{ item.balance == 0 ? '0.00' : item.balance }}</div>
-          </div>
-        </div>
-        <div class="experience-block">
-          <div class="experience-tab" *ngFor="let exp of item.experiences">
-            <div class="experience-tab-name">{{ exp.title }}<i class="experience-edit" (click)="editTempData(exp, item.id)">&#9998;</i></div>
-            <div class="tab-block"><span>At</span> {{ exp.skill }}</div>
-            <div class="tab-block"><span>As a</span> {{ exp.company }}</div>
-            <div class="tab-block lists">Accomplished</div>
-            <div class="accomplished-block">
-              <div class="accomplished-li" *ngFor="let acc of exp.accomplished">{{ acc.title }}</div>
-            </div>
-          </div>
-          <div class="experience-add" (click)="popup = true; idSkill = item.id; expNew = true; ">Add experience</div>
-        </div>
-      </div>
-    </div>
-    <div class="list-border"></div>
-  </div>
--->
-
   <div class="item-list" *ngFor="let item of activeSkills" [class.open]="item.check">
-    <div class="item-list-header" (click)="openItem(item.id)">
+    <div class="item-list-header" (click)="openItem(item)">
       <div class="item-list-name">{{ item.title }}</div>
       <div class="item-list-balance">
         <div>BALANCE</div>
@@ -53,27 +24,26 @@
   <ion-button expand="block" shape="undefined" class="add-skill">Add Skill</ion-button>
 
   <div class="modal" [class.open]="modalItemView">
-    <div class="expirence-block" *ngFor="let item of itemSkill">
-      <div class="expirence-list" *ngFor="let exp of item.experiences">
+    <div class="expirence-block" *ngIf="itemSkill">
+      <div class="expirence-list" *ngFor="let exp of itemSkill.experiences">
         <div class="expirence-list-header">
           <span>{{ exp.title }}</span>
           <i (click)="addExp(exp)">&#9998;</i>
         </div>
         <div class="expirence-list-tab">
           <div class="l">As</div>
-          <div class="r">Artistic Music</div>
+          <div class="r">{{ exp.skill }}</div>
           <div class="clear"></div>
         </div>
         <div class="expirence-list-tab">
           <div class="l">As a</div>
-          <div class="r">COO</div>
+          <div class="r">{{ exp.company }}</div>
           <div class="clear"></div>
         </div>
         <div class="expirence-list-tab">
           <div class="t">Accomplished</div>
           <div class="b">
-            <div>Coordinated vendor calls</div>
-            <div>New methods for defusing conflict</div>
+            <div *ngFor="let acc of exp.accomplished">{{ acc.title }}</div>
           </div>
         </div>
       </div>
@@ -90,38 +60,14 @@
         <div *ngFor="let type of types" (click)="addType(type)">{{ type.title }}</div>
       </div>
     </div>
-    <div class="input"><input type="text" placeholder="Where At Organization" /></div>
-    <div class="input"><input type="text" placeholder="As a Title" /></div>
-    <div class="accomplished-list">
-      <input type="text" placeholder="Accomplished" [ngModel]="acc.title" *ngFor="let acc of experiences.accomplished" />
+    <div class="input"><input type="text" placeholder="Where At Organization" [(ngModel)]="experiences.skill" /></div>
+    <div class="input"><input type="text" placeholder="As a Title" [(ngModel)]="experiences.company" /></div>
+    <div class="accomplished-list" *ngIf="experiences.accomplished.length > 0">
+      <input type="text" placeholder="Accomplished" [(ngModel)]="acc.title" *ngFor="let acc of experiences.accomplished" />
     </div>
     <ion-button expand="block" shape="undefined" class="experience" (click)="addAcc()">Add accomplished</ion-button>
     <ion-button expand="block" shape="undefined" class="experience" (click)="saveExp()">Done</ion-button>
     <ion-button expand="block" shape="undefined" class="done" (click)="closeExp()">Cancel</ion-button>
-  </div>
-
-  <div class="popup" [class.open]="popup">
-    <input type="hidden" [(ngModel)]="typeSelect.id" value="typeSelect.id" />
-    <div class="popup-block">
-      <div class="dropdown-block" [class.open]="dropdown">
-        <div class="dropdown-title" (click)="dropdown = dropdown ? false : true">Select {{ typeSelect.title == '' ? 'experiences': typeSelect.title }}<span><i>&rsaquo;</i></span></div>
-        <div class="dropdown-types">
-          <div *ngFor="let type of types" (click)="typeSelect.title = type.title; typeSelect.type_id = type.id; dropdown = false">{{ type.title }}</div>
-        </div>
-      </div>
-      <div class="input-block">
-        <input type="text" placeholder="Where At Organization" value="{{ typeSelect.company }}" [(ngModel)]="typeSelect.company" />
-      </div>
-      <div class="input-block">
-        <input type="text" placeholder="As a Title" value="{{ typeSelect.skill }}" [(ngModel)]="typeSelect.skill" />
-      </div>
-      <div class="accomplished-block">
-        <input type="text" *ngFor="let acc of typeSelect.accomplished" value="{{ acc.title }}" [(ngModel)]="acc.title" placeholder="Accomplishment" />
-      </div>
-      <div class="add-acc" (click)="addAccomplished()">Add accomplished</div>
-      <div style="clear: both;"></div>
-    </div>
-    <!--<div class="done" (click)="done()">Done</div>-->
   </div>
 
 </ion-content>

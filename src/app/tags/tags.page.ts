@@ -20,7 +20,7 @@ export class TagsPage implements OnInit {
   expNew: any = false;
 
   modalItemView: any = false;
-  itemSkill: any = [];
+  itemSkill: any = {};
 
   modalExpView: any = false;
   experiences: any = {};
@@ -28,8 +28,10 @@ export class TagsPage implements OnInit {
   title: any;
   type_id: any;
 
+  expItem: any = null;
+
   constructor(public router: Router, public storage: Storage) {
-    this.itemSkill = [{experiences: []}]
+    this.itemSkill = {experiences: []};
 
     this.experiences = {title: 'Professional', id: 0, type_id: 1, skill: '', company: '', accomplished: []};
 
@@ -88,22 +90,23 @@ export class TagsPage implements OnInit {
     });
   }
 
-  openItem(id) {
+  openItem(item) {
     const that = this;
+    that.itemSkill = {experiences: []};
     that.modalItemView = true;
-    that.activeSkills = this.activeSkills.filter(function(item){
-      if (id == item.id) {
-        that.itemSkill.push(item);
-        item.check = item.check ? false : true;
+    that.activeSkills = this.activeSkills.filter(function(item2){
+      if (item.id == item2.id) {
+        that.itemSkill = item2;
+        item2.check = item2.check ? false : true;
       } else {
-        item.check = false;
+        item2.check = false;
       }
-      return item;
+      return item2;
     })
   }
 
   closeItem() {
-    this.itemSkill = [{experiences: []}];
+    this.itemSkill = {experiences: []};
     this.modalItemView = false;
   }
 
@@ -117,14 +120,16 @@ export class TagsPage implements OnInit {
     });
     this.modalExpView = true;
     if (exp != null) {
+      this.expItem = exp;
       this.experiences = exp;
     } else {
-      this.experiences = {title: '', id: this.title, type_id: this.type_id, skill: '', company: '', accomplished: []};
+      this.expItem = null;
+      this.experiences = {title: this.title, id: 0, type_id: this.type_id, skill: '', company: '', accomplished: []};
     }
   }
 
   closeExp(){
-    this.experiences = {};
+    this.experiences = {title: 'Professional', id: 0, type_id: 1, skill: '', company: '', accomplished: []};
     this.modalExpView = false;
   }
 
@@ -140,9 +145,20 @@ export class TagsPage implements OnInit {
   }
 
   saveExp(){
-    this.skills = this.skills.filter(function(item, i){
-
+    this.experiences.accomplished = this.experiences.accomplished.filter(function(acc){
+      if (acc.title.length > 0) {
+        return acc;
+      }
     })
+    if (this.experiences.skill != '' && this.experiences.company != '') {
+      if (this.expItem != null) {
+
+      } else {
+        this.itemSkill.experiences.push(this.experiences);
+      }
+    }
+    this.experiences = {title: 'Professional', id: 0, type_id: 1, skill: '', company: '', accomplished: []};
+    this.modalExpView = false;
   }
 
   /*
