@@ -25,6 +25,8 @@ export class TagsPage implements OnInit {
   modalExpView: any = false;
   experiences: any = {};
   selectView: any = false;
+  title: any;
+  type_id: any;
 
   constructor(public router: Router, public storage: Storage) {
     this.itemSkill = [{experiences: []}]
@@ -105,17 +107,20 @@ export class TagsPage implements OnInit {
     this.modalItemView = false;
   }
 
-  addExp() {
-    const title = '';
-    const type_id = 0;
+  addExp(exp = null) {
+    const that = this;
     this.types.forEach(function(item, i){
       if (i == 0) {
-        this.title = item.title;
-        this.type_id = item.id;
+        that.title = item.title;
+        that.type_id = item.id;
       }
-    })
+    });
     this.modalExpView = true;
-    this.experiences = {title: '', id: title, type_id: type_id, skill: '', company: '', accomplished: []};
+    if (exp != null) {
+      this.experiences = exp;
+    } else {
+      this.experiences = {title: '', id: this.title, type_id: this.type_id, skill: '', company: '', accomplished: []};
+    }
   }
 
   closeExp(){
@@ -124,10 +129,8 @@ export class TagsPage implements OnInit {
   }
 
   addAcc() {
-    const acc = null;
-    if (this.experiences.accomplished.length < 5) {
-      this.experiences.accomplished.push(acc);
-    }
+    const acc = {title: ''};
+    this.experiences.accomplished.push(acc);
   }
 
   addType(type) {
@@ -138,7 +141,7 @@ export class TagsPage implements OnInit {
 
   saveExp(){
     this.skills = this.skills.filter(function(item, i){
-      
+
     })
   }
 

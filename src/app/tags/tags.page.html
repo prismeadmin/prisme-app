@@ -57,7 +57,7 @@
       <div class="expirence-list" *ngFor="let exp of item.experiences">
         <div class="expirence-list-header">
           <span>{{ exp.title }}</span>
-          <i>&#9998;</i>
+          <i (click)="addExp(exp)">&#9998;</i>
         </div>
         <div class="expirence-list-tab">
           <div class="l">As</div>
@@ -93,7 +93,7 @@
     <div class="input"><input type="text" placeholder="Where At Organization" /></div>
     <div class="input"><input type="text" placeholder="As a Title" /></div>
     <div class="accomplished-list">
-      <input type="text" placeholder="Accomplished" *ngFor="let acc of experiences.accomplished" />
+      <input type="text" placeholder="Accomplished" [ngModel]="acc.title" *ngFor="let acc of experiences.accomplished" />
     </div>
     <ion-button expand="block" shape="undefined" class="experience" (click)="addAcc()">Add accomplished</ion-button>
     <ion-button expand="block" shape="undefined" class="experience" (click)="saveExp()">Done</ion-button>
