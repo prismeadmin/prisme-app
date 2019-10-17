@@ -15,53 +15,53 @@
 
   <div class="animate" *ngIf="animate"></div>
 
-  <ion-grid class="grid" (click)="startBone()">
+  <ion-grid class="grid">
     <ion-row>
       <ion-col>
         <div class="grid-block">
-          <div class="bone bone1" *ngIf="bone == 1">
-            <div></div>
-          </div>
-          <div class="bone bone2" *ngIf="bone == 2">
-            <div></div>
-            <div></div>
-          </div>
-          <div class="bone bone3" *ngIf="bone == 3">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="bone bone4" *ngIf="bone == 4">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="bone bone5" *ngIf="bone == 5">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="bone bone6" *ngIf="bone == 6">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+          <div (click)="clickBoneText()" class="bones-text" *ngIf="boneTextCount == 1" [class.boneTextAnimate]="boneTextAnimate">Learn</div>
+          <div (click)="clickBoneText()" class="bones-text" *ngIf="boneTextCount == 2" [class.boneTextAnimate]="boneTextAnimate">Refine</div>
+          <div (click)="clickBoneText()" class="bones-text" *ngIf="boneTextCount == 3" [class.boneTextAnimate]="boneTextAnimate">Action</div>
+          <div (click)="clickBoneText()" class="bones-text" *ngIf="boneTextCount == 4" [class.boneTextAnimate]="boneTextAnimate">Social</div>
+          <div (click)="clickBoneText()" class="bones-text" *ngIf="boneTextCount == 5" [class.boneTextAnimate]="boneTextAnimate">Fun</div>
+          <div (click)="clickBoneText()" class="bones-text" *ngIf="boneTextCount == 6" [class.boneTextAnimate]="boneTextAnimate">Wild Card</div>
         </div>
       </ion-col>
       <ion-col>
         <div class="grid-block">
-          <div class="bones-text" *ngIf="bone == 1">Learn</div>
-          <div class="bones-text" *ngIf="bone == 2">Refine</div>
-          <div class="bones-text" *ngIf="bone == 3">Action</div>
-          <div class="bones-text" *ngIf="bone == 4">Social</div>
-          <div class="bones-text" *ngIf="bone == 5">Fun</div>
-          <div class="bones-text" *ngIf="bone == 6">Wild Card</div>
+          <div class="bone bone1" *ngIf="boneCount == 1" [class.boneDisabled]="boneDisabled">
+            <div></div>
+          </div>
+          <div class="bone bone2" *ngIf="boneCount == 2" [class.boneDisabled]="boneDisabled">
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone3" *ngIf="boneCount == 3" [class.boneDisabled]="boneDisabled">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone4" *ngIf="boneCount == 4" [class.boneDisabled]="boneDisabled">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone5" *ngIf="boneCount == 5" [class.boneDisabled]="boneDisabled">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="bone bone6" *ngIf="boneCount == 6" [class.boneDisabled]="boneDisabled">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
       </ion-col>
     </ion-row>

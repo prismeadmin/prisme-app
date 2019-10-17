@@ -12,12 +12,23 @@ export class ModalPage {
   @Input() select: any = 'Select';
   task: any;
   defTasks: any;
-  defBone: any = 4;
-  bone: any = 6;
+
   time: any;
   rand: any;
   animate: any = false;
-  boneIteral = false;
+
+  boneDef: any = 1;
+  boneCount: any = 1;
+  boneDisabled: any = true;
+  boneInterval = 200;
+  boneTimeout: any = 4000;
+
+  boneTextDef = 1;
+  boneTextCount = 1;
+  boneTextAnimate: any = true;
+  boneTextDisabled: any = false;
+  boneTextInterval: any = 200;
+  boneTextTimeout: any = 4000;
 
   constructor(
     private modalController: ModalController,
@@ -29,29 +40,45 @@ export class ModalPage {
 
   ngOnInit () {}
 
-  randMath () {
+  randMath (bone) {
     const rand = Math.floor(1 + Math.random() * (6 + 1 - 1));
-    if (rand == this.bone) {
-      return this.randMath();
+    if (rand == bone) {
+      return this.randMath(bone);
     } else {
       return rand;
     }
   }
 
-  startBone () {
+  clickBoneText () {
     const that = this;
-    if (!that.boneIteral) {
-      that.boneIteral = true;
+    that.boneTextAnimate = false;
+    if (that.boneTextDisabled == false) {
       that.animate = true;
+      that.boneTextDisabled = true;
       that.time = setInterval(function(){
-        that.bone = that.randMath();
-        console.log(that.bone);
-      },200);
+        that.boneTextCount = that.randMath(that.boneTextCount);
+      }, that.boneTextInterval);
       setTimeout(function(){
         clearInterval(that.time);
-        that.bone = that.defBone;
+        that.boneTextCount = that.boneTextDef;
         that.animate = false;
-      }, 4000);
+      }, that.boneTextTimeout);
+    }
+  }
+
+  clickBone () {
+    const that = this;
+    if (that.boneDisabled) {
+      that.animate = true;
+      that.boneDisabled = false;
+      that.time = setInterval(function(){
+        that.boneCount = that.randMath(that.boneCount);
+      }, that.boneInterval);
+      setTimeout(function(){
+        clearInterval(that.time);
+        that.boneTextCount = that.boneTextDef;
+        that.animate = false;
+      }, that.boneTimeout);
     }
   }
 
@@ -67,6 +94,7 @@ export class ModalPage {
     });
     await actionSheet.present();
     actionSheet.onWillDismiss().then((response:any) => {
+      this.clickBone();
       this.defTasks.forEach(function(item){
         if (item.role == response.role) {
           that.task.task = {text: item.text, role: item.role, checked: false};
