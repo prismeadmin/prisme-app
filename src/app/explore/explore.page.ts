@@ -45,19 +45,19 @@ export class ExplorePage implements OnInit {
           text: 'Goal 1',
           handler: () => {
             this.select = 'Goal 1';
-            this.presentModal();
+            this.openModal();
           }
         }, {
           text: 'Goal 2',
           handler: () => {
             this.select = 'Goal 2';
-            this.presentModal();
+            this.openModal();
           }
         }, {
           text: 'Goal 3',
           handler: () => {
             this.select = 'Goal 3';
-            this.presentModal();
+            this.openModal();
           }
         }, {
           text: 'Cancel',
@@ -66,40 +66,40 @@ export class ExplorePage implements OnInit {
         }]
       });
       await actionSheet.present();
-    }
+  }
 
-    async presentModal() {
-      const modal = await this.modalController.create({
-        component: ModalPage,
-        componentProps: {
-          select: this.select,
-        }
-      });
+  async openModal() {
+    const modal: HTMLIonModalElement = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        select: this.select,
+      }
+    });
 
-      modal.onDidDismiss().then((result) => {
-        console.log(result);
-      });
+    modal.onDidDismiss().then((result) => {
+      console.log(result);
+    });
 
-      return await modal.present();
-    }
+    return await modal.present();
+  }
 
-    home () {
-      this.router.navigate(['/main']);
-    }
+  home () {
+    this.router.navigate(['/main']);
+  }
 
-    explore () {
-      this.router.navigate(['/explore']);
-    }
+  explore () {
+    this.router.navigate(['/explore']);
+  }
 
-    collect () {
-      this.router.navigate(['/collect']);
-    }
+  collect () {
+    this.router.navigate(['/collect']);
+  }
 
-    user () {
-      this.router.navigate(['/user']);
-    }
+  user () {
+    this.router.navigate(['/user']);
+  }
 
-    more () {
-      this.router.navigate(['/more']);
-    }    
+  more () {
+    this.router.navigate(['/more']);
+  }
 }

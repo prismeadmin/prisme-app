@@ -11,7 +11,7 @@
   <div class="ion-slides">
     <ion-slides [options]="sliderConfig">
       <ion-slide *ngFor="let item of skills">
-        <div class="ion-slide" [attr.color-item]="red" (click)="tags(item.id)">{{item.title}}</div>
+        <div class="ion-slide" (click)="tags(item.id)">{{item.title}}</div>
       </ion-slide>
     </ion-slides>
   </div>

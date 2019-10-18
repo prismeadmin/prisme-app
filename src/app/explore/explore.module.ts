@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ExplorePage } from './explore.page';
-import { ModalPage } from '../modal/modal.page';
+import { ModalPageModule } from '../modal/modal.module';
 
 const routes: Routes = [
   {
@@ -20,9 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ModalPageModule,
   ],
-  declarations: [ExplorePage, ModalPage],
-  entryComponents: [ModalPage],
+  declarations: [ExplorePage]
 })
 export class ExplorePageModule {}

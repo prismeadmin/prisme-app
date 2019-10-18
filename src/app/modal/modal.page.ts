@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActionSheetController, ModalController, NavParams } from '@ionic/angular';
 
 @Component({
-  selector: 'modal-example',
+  selector: 'modal-page',
   templateUrl: './modal.page.html',
   styleUrls: ['./modal.page.scss'],
 })
@@ -37,8 +37,6 @@ export class ModalPage {
     this.defTasks = [{text: 'Task 1', role: '1', checked: false},{text: 'Task 2', role: '2', checked: false},{text: 'Task 3', role: '3', checked: false}];
     this.task = {type: {name: this.select, checked: false}, rate: '', task: {}};
   }
-
-  ngOnInit () {}
 
   randMath (bone) {
     const rand = Math.floor(1 + Math.random() * (6 + 1 - 1));
