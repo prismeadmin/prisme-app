@@ -10,70 +10,107 @@ import { ModalPage } from '../modal/modal.page';
 })
 export class ExplorePage implements OnInit {
 
-  select: any;
-  goal: any;
-  goals: any;
+  task: any;
+  defTasks: any;
+  strings: any;
+  days: any;
+
+  time: any;
+  rand: any;
+  animate: any = false;
+
+  boneDef: any = 1;
+  boneCount: any = 1;
+  boneDisabled: any = true;
+  boneInterval = 800;
+  boneTimeout: any = 4000;
+  boneAnimate: any = false;
+
+  boneTextDef = 1;
+  boneTextCount = 1;
+  boneTextDisabled: any = false;
+  boneTextInterval: any = 200;
+  boneTextTimeout: any = 4000;
 
   constructor(
     public router: Router,
     public actionSheetController: ActionSheetController,
     public modalController: ModalController
   ) {
-    this.goal = null;
-    this.goals = [
-      {id: 0, name: 'Goal 1', tasks: [{id: 0, name: 'Task 1', rate: 'bad'},{id: 1, name: 'Task 2', rate: 'good'}]},
-      {id: 1, name: 'Goal 2', tasks: [{id: 0, name: 'Task 1', rate: 'good'},{id: 1, name: 'Task 2', rate: 'bad'}]},
-      {id: 2, name: 'Goal 3', tasks: [{id: 0, name: 'Task 1', rate: 'good'},{id: 1, name: 'Task 2', rate: 'bad'}]},
-    ];
+    this.defTasks = [{text: 'Task 1', role: '1', checked: false},{text: 'Task 2', role: '2', checked: false},{text: 'Task 3', role: '3', checked: false}];
+    this.task = {type: {name: 'Goal', checked: false}, rate: '', task: {}};
+    this.days = [{value: 1},{value: 2},{value: 3},{value: 4},{value: 5},{value: 6}];
+    this.strings = [{value: 1, name: 'Learn'},{value: 2, name: 'Refine'},{value: 3, name: 'Action'},{value: 4, name: 'Social'},{value: 5, name: 'Fun'},{value: 6, name: 'Wild Card'}];
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  goalSet(goal) {
-    if (this.goal != goal) {
-      this.goal = goal;
+  randMath (bone) {
+    this.boneAnimate = true;
+    const rand = Math.floor(1 + Math.random() * (6 + 1 - 1));
+    if (rand == bone) {
+      return this.randMath(bone);
     } else {
-      this.goal = null;
+      return rand;
     }
   }
 
+  clickBoneText () {
+    const that = this;
+    if (that.boneTextDisabled == false) {
+      that.animate = true;
+      that.boneTextDisabled = true;
+      that.time = setInterval(function(){
+        that.boneTextCount = that.randMath(that.boneTextCount);
+      }, that.boneTextInterval);
+      setTimeout(function(){
+        clearInterval(that.time);
+        that.boneTextCount = that.boneTextDef;
+        that.animate = false;
+      }, that.boneTextTimeout);
+    }
+  }
+
+  clickBone () {
+    const that = this;
+    if (that.boneDisabled) {
+      that.animate = true;
+      that.boneDisabled = false;
+      that.time = setInterval(function(){
+        that.boneCount = that.randMath(that.boneCount);
+      }, that.boneInterval);
+      setTimeout(function(){
+        clearInterval(that.time);
+        that.boneTextCount = that.boneTextDef;
+        that.animate = false;
+      }, that.boneTimeout);
+    }
+  }
+
+  rateSet(rate) {
+    this.task.rate = rate;
+  }
+
   async presentActionSheet() {
-      const actionSheet = await this.actionSheetController.create({
-        header: 'Select One',
-        buttons: [{
-          text: 'Goal 1',
-          handler: () => {
-            this.select = 'Goal 1';
-            this.openModal();
-          }
-        }, {
-          text: 'Goal 2',
-          handler: () => {
-            this.select = 'Goal 2';
-            this.openModal();
-          }
-        }, {
-          text: 'Goal 3',
-          handler: () => {
-            this.select = 'Goal 3';
-            this.openModal();
-          }
-        }, {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {}
-        }]
+    const that = this;
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Select One',
+      buttons: this.defTasks,
+    });
+    await actionSheet.present();
+    actionSheet.onWillDismiss().then((response:any) => {
+      this.clickBone();
+      this.defTasks.forEach(function(item){
+        if (item.role == response.role) {
+          that.task.task = {text: item.text, role: item.role, checked: false};
+        }
       });
-      await actionSheet.present();
+    });
   }
 
   async openModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
-      component: ModalPage,
-      componentProps: {
-        select: this.select,
-      }
+      component: ModalPage
     });
 
     modal.onDidDismiss().then((result) => {
