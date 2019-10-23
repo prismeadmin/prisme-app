@@ -32,6 +32,9 @@ export class ExplorePage implements OnInit {
   boneTextInterval: any = 500;
   boneTextTimeout: any = 4000;
 
+  valueTask: any = '';
+  valueView: any = false;
+
   constructor(
     public router: Router,
     public actionSheetController: ActionSheetController,
@@ -43,7 +46,9 @@ export class ExplorePage implements OnInit {
     this.strings = [{value: 1, name: 'Learn'},{value: 2, name: 'Refine'},{value: 3, name: 'Action'},{value: 4, name: 'Social'},{value: 5, name: 'Fun'},{value: 6, name: 'Wild Card'}];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.defTasks.push({text: 'Add My Own', role: '2'})
+  }
 
   randMath (bone) {
     const rand = Math.floor(1 + Math.random() * (6 + 1 - 1));
@@ -94,6 +99,12 @@ export class ExplorePage implements OnInit {
     this.task.rate = rate;
   }
 
+  addTask() {
+    if (this.valueTask != '') {
+      this.task.task = {text: this.valueTask, role: 1, checked: false};
+    }
+  }
+
   async presentActionSheet() {
     const that = this;
     const actionSheet = await this.actionSheetController.create({
@@ -104,8 +115,13 @@ export class ExplorePage implements OnInit {
     actionSheet.onWillDismiss().then((response:any) => {
       this.clickBone();
       this.defTasks.forEach(function(item){
-        if (item.role == response.role) {
-          that.task.task = {text: item.text, role: item.role, checked: false};
+        if (item.role == 2) {
+          that.valueView = true;
+          that.taskTrue = false;
+        } else {
+          if (item.role == response.role) {
+            that.task.task = {text: item.text, role: item.role, checked: false};
+          }
         }
       });
     });

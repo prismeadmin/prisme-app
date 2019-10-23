@@ -69,7 +69,12 @@
     <ion-label>{{task.task.text}}</ion-label>
   </ion-item>
 
-  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()" *ngIf="!task.task.text && taskTrue">New Task</ion-button>
+  <ion-item class="input" lines="none" *ngIf="!task.task.text && valueView">
+    <ion-input placeholder="type here …" [(ngModel)]="valueTask"></ion-input>
+    <ion-button expand="block" shape="undefined" (click)="addTask()">Save</ion-button>
+  </ion-item>
+
+  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()" *ngIf="!task.task.text && taskTrue">Choose Task</ion-button>
 
   <ion-grid class="smile" *ngIf="task.task.text">
     <ion-row>
