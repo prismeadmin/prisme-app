@@ -18,18 +18,18 @@ export class ExplorePage implements OnInit {
   time: any;
   rand: any;
   animate: any = false;
+  taskTrue: any = false;
 
   boneDef: any = 1;
   boneCount: any = 1;
   boneDisabled: any = true;
-  boneInterval = 800;
+  boneInterval = 500;
   boneTimeout: any = 4000;
-  boneAnimate: any = false;
 
   boneTextDef = 1;
-  boneTextCount = 1;
+  boneTextCount = 0;
   boneTextDisabled: any = false;
-  boneTextInterval: any = 200;
+  boneTextInterval: any = 500;
   boneTextTimeout: any = 4000;
 
   constructor(
@@ -46,7 +46,6 @@ export class ExplorePage implements OnInit {
   ngOnInit() {}
 
   randMath (bone) {
-    this.boneAnimate = true;
     const rand = Math.floor(1 + Math.random() * (6 + 1 - 1));
     if (rand == bone) {
       return this.randMath(bone);
@@ -60,29 +59,33 @@ export class ExplorePage implements OnInit {
     if (that.boneTextDisabled == false) {
       that.animate = true;
       that.boneTextDisabled = true;
+
       that.time = setInterval(function(){
         that.boneTextCount = that.randMath(that.boneTextCount);
       }, that.boneTextInterval);
+
       setTimeout(function(){
         clearInterval(that.time);
         that.boneTextCount = that.boneTextDef;
         that.animate = false;
+        that.taskTrue = true;
+        that.boneDisabled = false;
       }, that.boneTextTimeout);
     }
   }
 
   clickBone () {
     const that = this;
-    if (that.boneDisabled) {
+    if (that.boneDisabled == false) {
       that.animate = true;
-      that.boneDisabled = false;
+      that.boneDisabled = true;
       that.time = setInterval(function(){
         that.boneCount = that.randMath(that.boneCount);
       }, that.boneInterval);
       setTimeout(function(){
         clearInterval(that.time);
-        that.boneTextCount = that.boneTextDef;
-        that.animate = false;
+        that.boneCount = that.boneCount;
+        that.animate = false;  
       }, that.boneTimeout);
     }
   }
