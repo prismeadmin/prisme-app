@@ -85,7 +85,7 @@ export class ExplorePage implements OnInit {
       setTimeout(function(){
         clearInterval(that.time);
         that.boneCount = that.boneCount;
-        that.animate = false;  
+        that.animate = false;
       }, that.boneTimeout);
     }
   }
