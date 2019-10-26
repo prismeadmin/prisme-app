@@ -15,6 +15,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 import {IonicStorageModule} from '@ionic/storage';
 import 'hammerjs';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [AppComponent],
@@ -22,7 +24,8 @@ import 'hammerjs';
         ComponentsModule,
         ReactiveFormsModule,
         BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-        IonicStorageModule.forRoot()],
+        IonicStorageModule.forRoot(),
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
     providers: [
         StatusBar,
         SplashScreen,

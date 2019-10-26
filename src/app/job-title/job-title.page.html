@@ -8,9 +8,9 @@
     </div>
   </div>
   <div class="select-menu" *ngIf="select">
-    <div class="menu-tab" *ngFor="let job of jobs" (click)="selectJob(job.id)">
-      <div class="menu-tab-title">{{ job.title }}</div>
-      <div class="menu-tab-text">{{ job.text }}</div>
+    <div class="menu-tab" *ngFor="let cat of cats" (click)="selectJob(cat[0].id)">
+      <div class="menu-tab-title">{{ cat[0].category }}</div>
+      <div class="menu-tab-text" *ngFor="let position of cat">{{ position.name }}</div>
     </div>
   </div>
   <img src="/assets/images/binoculars.png" class="binoculars" *ngIf="!select" />

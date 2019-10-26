@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
                 console.log(data);
                 this.storage.ready().then(() => {
                     this.storage.set('token', data.token);
-                    this.router.navigate(['/job-title']);
+                    this.router.navigate(['/main']);
                 });
                 // this.router.navigate(['/job-title']);
             }, error => {

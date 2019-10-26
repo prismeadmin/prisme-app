@@ -43,6 +43,7 @@ export class SignupPage implements OnInit {
             {type: 'areNotEqual', message: 'Password mismatch'}
         ]
     };
+    error: any;
 
     constructor(
         public router: Router,
@@ -104,8 +105,8 @@ export class SignupPage implements OnInit {
             .subscribe(data => {
                 console.log(data);
                 this.router.navigate(['/job-title']);
-            }, error => {
-                console.log(error);
+            }, errorResp => {
+                this.error = errorResp.error.error;
             });
         // console.log('ss', this.signupForm.value);
         // console.log('do sign up');

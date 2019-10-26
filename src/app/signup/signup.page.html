@@ -78,6 +78,11 @@
     </ion-list>
 
     <ion-button class="signup-btn" type="submit" expand="block" [disabled]="signupForm.invalid">Sign Up</ion-button>
+    <ion-item>
+      <div class="error-container">
+      <div class="error-message"> <span style="color:var(--ion-color-danger)">{{error?.message}}</span></div>
+      </div>
+    </ion-item>
     <ion-row class="other-auth-options-row">
       <ion-button class="login-btn" fill="clear" [routerLink]="['/auth/login']">
         Already have an account?
