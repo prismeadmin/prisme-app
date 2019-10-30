@@ -220,4 +220,24 @@ export class TagsPage implements OnInit {
     save() {
         this.router.navigate(['/main']);
     }
+
+    home () {
+      this.router.navigate(['/main']);
+    }
+
+    explore () {
+      this.router.navigate(['/explore']);
+    }
+
+    collect () {
+      this.router.navigate(['/collect']);
+    }
+
+    user () {
+      this.router.navigate(['/user']);
+    }
+
+    more () {
+      this.router.navigate(['/more']);
+    }    
 }
