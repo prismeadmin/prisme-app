@@ -3,7 +3,9 @@ import {Validators, FormGroup, FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MenuController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
-import { Storage } from '@ionic/storage';
+import {Storage} from '@ionic/storage';
+import {environment} from '../../environments/environment';
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
@@ -58,8 +60,8 @@ export class LoginPage implements OnInit {
             'email': this.loginForm.get('email').value,
             'password': this.loginForm.get('password').value,
         };
-        this.http.post('http://127.0.0.1:3000/users/login', postData, {})
-            .subscribe((data:any) => {
+        this.http.post(environment.url + '/users/login', postData, {})
+            .subscribe((data: any) => {
                 console.log(data);
                 this.storage.ready().then(() => {
                     this.storage.set('token', data.token);

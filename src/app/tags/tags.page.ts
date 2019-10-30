@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
     selector: 'app-tags',
@@ -79,7 +80,7 @@ export class TagsPage implements OnInit {
                 const headers = new Headers();
                 headers.append('Accept', 'application/json');
                 headers.append('Content-Type', 'application/json');
-                this.http.get('http://127.0.0.1:3000/positions', {})
+                this.http.get(environment.url + '/positions', {})
                     .subscribe(data => {
                         this.skills = data;
                         this.activeSkills = that.skills.find((position) => position.id === jobId);

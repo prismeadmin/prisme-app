@@ -4,6 +4,7 @@ import {Storage} from '@ionic/storage';
 import 'hammerjs';
 import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
     selector: 'app-skills',
@@ -24,7 +25,7 @@ export class SkillsPage implements OnInit {
         const headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
-        this.http.get('http://127.0.0.1:3000/positions', {})
+        this.http.get(environment.url + '/positions', {})
             .subscribe(data => {
                 this.skills = data;
                 let that = this;

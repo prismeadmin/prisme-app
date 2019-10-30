@@ -7,6 +7,7 @@ import {TermsOfServicePage} from '../terms-of-service/terms-of-service.page';
 import {PrivacyPolicyPage} from '../privacy-policy/privacy-policy.page';
 import {PasswordValidator} from '../validators/password.validator';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Component({
     selector: 'app-signup',
@@ -101,7 +102,7 @@ export class SignupPage implements OnInit {
             'firstName': this.signupForm.get('firstName').value,
             'lastName': this.signupForm.get('lastName').value
         };
-        this.http.post('http://127.0.0.1:3000/users/signup', postData, {})
+        this.http.post(environment.url + '/users/signup', postData, {})
             .subscribe(data => {
                 console.log(data);
                 this.router.navigate(['/job-title']);

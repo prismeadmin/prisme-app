@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Storage} from '@ionic/storage';
 import {HttpClient} from '@angular/common/http';
-
-import * as _ from "lodash";
+import {environment} from '../../environments/environment';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-job-title',
@@ -40,7 +40,7 @@ export class JobTitlePage implements OnInit {
         const headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
-        this.http.get('http://127.0.0.1:3000/positions', {})
+        this.http.get(environment.url + '/positions', {})
             .subscribe(data => {
                 this.cats = _.values(_.groupBy(data, 'category'));
                 console.log(this.cats);
