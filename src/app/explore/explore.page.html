@@ -6,7 +6,7 @@
 
   <ion-item class="select" lines="none">
     <ion-checkbox [(ngModel)]="task.type.checked" color="medium"></ion-checkbox>
-    <ion-label>{{task.type.name}}</ion-label>
+    <ion-label>{{goal?.category}}</ion-label>
   </ion-item>
 
   <div class="animate" *ngIf="animate"></div>
@@ -74,9 +74,9 @@
     <ion-button expand="block" shape="undefined" (click)="addTask()">Save</ion-button>
   </ion-item>
 
-  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()" *ngIf="!task.task.text && taskTrue">Choose Task</ion-button>
+  <ion-button expand="block" shape="undefined" (click)="presentActionSheet()" *ngIf="!task.task.name && taskTrue">Choose Task</ion-button>
 
-  <ion-grid class="smile" *ngIf="task.task.text">
+  <ion-grid class="smile" *ngIf="task.task.checked">
     <ion-row>
       <ion-col (click)="rateSet('bad')">
         <img src="../assets/images/bad.png" *ngIf="task.rate == 'bad'" />
