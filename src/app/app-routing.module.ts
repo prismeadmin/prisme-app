@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'account-activation', loadChildren: './account-activation/account-activation.module#AccountActivationPageModule' },
   { path: 'explore', loadChildren: './explore/explore.module#ExplorePageModule' },
   //{ path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
-  { path: 'more', loadChildren: './more/more.module#MorePageModule' }
+  { path: 'more', loadChildren: './more/more.module#MorePageModule' },  { path: 'completed', loadChildren: './completed/completed.module#CompletedPageModule' }
+
 
 ];
 @NgModule({

@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
+import {Header} from '@ionic/storage';
 
 @Component({
     selector: 'app-explore',
@@ -15,6 +16,7 @@ import {Storage} from '@ionic/storage';
 })
 export class ExplorePage implements OnInit {
 
+    user_task_id: any;
     task: any;
     defTasks: any;
     strings: any;
@@ -40,6 +42,7 @@ export class ExplorePage implements OnInit {
     valueTask: any = '';
     valueView: any = false;
     goal: any;
+    task: any;
 
     constructor(
         public router: Router,
@@ -55,10 +58,14 @@ export class ExplorePage implements OnInit {
         // }];
         this.task = {type: {name: 'Goal', checked: false}, rate: '', task: {}};
         this.days = [{value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5}, {value: 6}];
-        this.strings = [{value: 1, name: 'Learn'}, {value: 2, name: 'Refine'}, {value: 3, name: 'Action'}, {
-            value: 4,
-            name: 'Social'
-        }, {value: 5, name: 'Fun'}, {value: 6, name: 'Wild Card'}];
+        this.strings = [
+          {value: 1, name: 'Learn'},
+          {value: 2, name: 'Refine'},
+          {value: 3, name: 'Action'},
+          {value: 4, name: 'Social'},
+          {value: 5, name: 'Fun'},
+          {value: 6, name: 'Wild Card'}
+        ];
     }
 
     ngOnInit() {
@@ -74,8 +81,6 @@ export class ExplorePage implements OnInit {
                     return task;
                 });
                 this.defTasks.push({text: 'Add My Own', role: '2'});
-
-                console.log('d', this.defTasks);
             }, errorResp => {
                 console.log(errorResp);
             });
@@ -85,12 +90,37 @@ export class ExplorePage implements OnInit {
                 let that = this;
                 this.storage.get('jobId').then((jobId) => {
                     that.goal = data.find((position) => position.id === jobId);
-                    console.log(that.goal);
                 });
 
             }, errorResp => {
                 console.log(errorResp);
             });
+
+
+        this.storage.get('token').then((val) => {
+          this.http.get(environment.url + '/users/task?filter[where][user_id]=' + val + '&filter[where][status]=open')
+              .subscribe((data: any) => {
+                if (data[0]) {
+                  let that = this;
+                  this.user_task_id = data[0].id;
+                  this.boneTextDisabled = true;
+                  this.boneDisabled = true;
+                  this.boneCount = data[0].days;
+                  this.boneTextCount = data[0].task_type;
+                  this.defTasks.forEach(function(item) {
+                    if (item.role == data[0].task_id) {
+                      that.task.task = {text: item.text, role: item.role, checked: false};
+                    }
+                  });
+                } else {
+
+                }
+                console.log(data)
+              }, errorResp => {
+                  console.log(errorResp);
+              });
+        });
+
     }
 
     randMath(bone) {
@@ -134,12 +164,57 @@ export class ExplorePage implements OnInit {
                 clearInterval(that.time);
                 that.boneCount = that.boneCount;
                 that.animate = false;
+                that.storage.get('token').then((val) => {
+                  const postData = {
+                      'category_id': String(that.goal.category),
+                      'user_id': String(val),
+                      'task_type': String(that.boneTextCount),
+                      'task_id': String(that.task.task.role),
+                      'status' : 'open',
+                      'days' : String(that.boneCount),
+                      'rate' : '',
+                  };
+                  that.http.post(environment.url + '/users/task/create', postData, {})
+                    .subscribe((data: any) => {
+                        if (data.id) {
+                          that.user_task_id = data.id;
+                        }
+                      }, error => {
+                        console.log(error);
+                    });
+                })
             }, that.boneTimeout);
         }
     }
 
     rateSet(rate) {
-        this.task.rate = rate;
+      let that = this;
+      this.task.rate = rate;
+      this.storage.get('token').then((val) => {
+          const postData = {
+              'user_id': String(val),
+              'task_type': String(that.boneTextCount),
+              'task_id': String(that.task.task.role),
+              'status' : 'completed',
+              'days' : String(that.boneCount),
+              'rate' : String(that.task.rate),
+          };
+          that.http.patch(environment.url + '/users/task/' + that.user_task_id, postData, {})
+            .subscribe((data: any) => {
+                that.task = {type: {name: 'Goal', checked: false}, rate: '', task: {}};
+                that.valueView = false;
+                that.user_task_id =  null;
+                that.boneDisabled = true;
+                that.boneTextDisabled = false;
+                that.boneTextCount = 0;
+                that.animate = false;
+                that.taskTrue = false;
+                that.boneCount = 1;
+                that.router.navigate(['/completed']);
+              }, error => {
+                console.log(error);
+            });
+        })
     }
 
     addTask() {
