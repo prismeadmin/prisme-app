@@ -7,7 +7,6 @@ import * as _ from 'lodash';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
-import {Header} from '@ionic/storage';
 
 @Component({
     selector: 'app-explore',

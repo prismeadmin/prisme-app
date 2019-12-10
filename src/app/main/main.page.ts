@@ -1,5 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router} from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -17,7 +17,8 @@ export class MainPage implements OnInit {
     slidesPerView: 2,
     centeredSlides: true
   };
-
+  itemSkill: any;
+  skill_id: any;
   skills: any = Array;
   moreShow: any = true;
   cvs: any = Object;
@@ -45,7 +46,7 @@ export class MainPage implements OnInit {
     let that = this;
     this.storage.get('token').then((token) => {
         this.http.get(environment.url + '/users/skill?filter[where][user_id]=' + token, {})
-        .subscribe(data => {
+        .subscribe((data:any) => {
             let that = this;
             data.forEach(function(item){
               that.skill_id = item.id;
@@ -53,14 +54,6 @@ export class MainPage implements OnInit {
                 that.skills.push(item2);
               })
             })
-            if (that.router.browserUrlTree.queryParams.id) {
-              that.skills.forEach(function(item){
-                if (item.id == that.router.browserUrlTree.queryParams.id) {
-                  that.itemSkill = item;
-                  that.modalItemView = true;
-                }
-              });
-            }
         }, errorResp => {
           console.log(errorResp);
         });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
     styleUrls: ['./tags.page.scss'],
 })
 export class TagsPage implements OnInit {
+    id: any;
     skill_id: any;
     skills: any = [];
     itemSkill: any;
@@ -20,27 +21,33 @@ export class TagsPage implements OnInit {
     experiences: any;
     types: any;
     
-    constructor(public router: Router, public storage: Storage, public http: HttpClient) {
+    constructor(private route: ActivatedRoute, public router: Router, public storage: Storage, public http: HttpClient) {
         this.itemSkill = {id: 0, name: '', check: false, balance: 0.00, experiences: []};
         this.types = [{name: 'Professional', id: 1},{name: 'Volunteer', id: 2}];
         this.experiences = {id: 0, name: '', skill: '', company: '', accomplished: []};
     }
 
     ngOnInit() {
+      this.id = null;
         let that = this;
+        this.route.queryParams.subscribe(params => {
+          if (params && params.id) {
+            this.id = JSON.parse(params.id);
+          }
+        });           
         this.storage.get('token').then((token) => {
             this.http.get(environment.url + '/users/skill?filter[where][user_id]=' + token, {})
-            .subscribe(data => {
+            .subscribe((data:any) => {
                 let that = this;  
                 data.forEach(function(item){
                   that.skill_id = item.id;
                   item.skills.forEach(function(item2){
                     that.skills.push(item2);
                   }) 
-                })         
-                if (that.router.browserUrlTree.queryParams.id) {
+                })                      
+                if (this.id) {
                   that.skills.forEach(function(item){
-                    if (item.id == that.router.browserUrlTree.queryParams.id) {
+                    if (item.id == that.id) {
                       that.itemSkill = item;
                       that.modalItemView = true;          
                     }          
@@ -54,10 +61,16 @@ export class TagsPage implements OnInit {
     }
     
     ionViewWillEnter() {
+      this.id = null;
       let that = this;
-      if (this.router.browserUrlTree.queryParams.id) {
+      this.route.queryParams.subscribe(params => {
+        if (params && params.id) {
+          this.id = JSON.parse(params.id);
+        }
+      });         
+      if (this.id) {
         this.skills.forEach(function(item){
-          if (item.id == that.router.browserUrlTree.queryParams.id) {
+          if (item.id == that.id) {
             that.itemSkill = item;
             that.modalItemView = true;          
           }          
