@@ -41,13 +41,12 @@ export class JobTitlePage implements OnInit {
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
         this.http.get(environment.url + '/positions', {})
-            .subscribe(data => {
-                this.cats = _.values(_.groupBy(data, 'category'));
-                console.log(this.cats);
-
-            }, errorResp => {
-                console.log(errorResp);
-            });
+        .subscribe(data => {
+          this.cats = _.values(_.groupBy(data, 'category'));
+          console.log(this.cats);
+        }, errorResp => {
+          console.log(errorResp);
+        });
         /*
         this.stage = new Konva.Stage({
             container: 'crystall',

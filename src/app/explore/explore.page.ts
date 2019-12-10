@@ -4,7 +4,7 @@ import {ActionSheetController, ModalController} from '@ionic/angular';
 import {ModalPage} from '../modal/modal.page';
 import {environment} from '../../environments/environment';
 import * as _ from 'lodash';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Storage} from '@ionic/storage';
 import {Header} from '@ionic/storage';
@@ -42,7 +42,6 @@ export class ExplorePage implements OnInit {
     valueTask: any = '';
     valueView: any = false;
     goal: any;
-    task: any;
 
     constructor(
         public router: Router,

@@ -1,5 +1,8 @@
+.toolbar{
+  background: left top / 100% auto no-repeat url("../../assets/images/triangles.png")!important;
+  padding: 0.5rem;
+}
 ion-title{
-  background: left top / 100% auto no-repeat url("../../assets/images/triangles.png");
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   div{
@@ -8,12 +11,13 @@ ion-title{
     position: relative;
     font-size: 1.1rem;
     color: #FFF;
-    padding-top: 0.45rem;
+    padding-top: 0.4rem;
     &.l{
       text-align: left;
     }
     &.c{
       padding-top: 0;
+      text-align: center;
       img{
         height: 1.8rem;
         position: relative;
@@ -88,10 +92,10 @@ ion-title{
 
   .modal{
     width: 100%;
-    height: calc(100% - 2.8rem);
+    height: calc(100% - 3.1rem);
     position: fixed;
     left: 110%;
-    top: 2.8rem;
+    top: 3.1rem;
     background: #FFF;
     z-index: 999;
     box-shadow: 0 0 1px #EEE;
@@ -100,6 +104,15 @@ ion-title{
     padding: 1rem;
     &.open{
       left: 0;
+    }
+    .expirence-name{
+      width: 100%;
+      color: #666;
+      margin-bottom: 1rem;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 1vw;
+      padding: 1rem;
+      border: 1px solid #DDD;
     }
     .experience{
       margin-top: 0;
@@ -116,12 +129,19 @@ ion-title{
         font-size: 1rem;
         color: #444;
         text-shadow: 1px 1px 1px #FFF;
-        i{
+        .edit{
+          position: absolute;
+          right: 3.5rem;
+          top: 1rem;
+          font-size: 1.1rem;
+          color: #F17022;
+        }
+        .delete{
           position: absolute;
           right: 1rem;
-          top: 0.55rem;
+          top: 0.9rem;
           font-size: 1.4rem;
-          color: #F17022;
+          color: #8e2c11;
         }
       }
       .expirence-list-tab{

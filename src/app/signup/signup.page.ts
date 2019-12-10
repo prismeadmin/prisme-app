@@ -105,7 +105,7 @@ export class SignupPage implements OnInit {
         this.http.post(environment.url + '/users/signup', postData, {})
             .subscribe(data => {
                 console.log(data);
-                this.router.navigate(['/job-title']);
+                this.router.navigate(['/auth/login']);
             }, errorResp => {
                 this.error = errorResp.error.error;
             });

@@ -12,6 +12,7 @@ import {environment} from '../../environments/environment';
     styleUrls: ['./skills.page.scss'],
 })
 export class SkillsPage implements OnInit {
+    user_task_id: any;
     skills: any = [];
     activeSkills: any = {};
     swipeI: any = null;
@@ -26,31 +27,38 @@ export class SkillsPage implements OnInit {
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
         this.http.get(environment.url + '/positions', {})
-            .subscribe(data => {
-                this.skills = data;
-                let that = this;
-                this.storage.get('jobId').then((jobId) => {
-                    console.log(jobId);
-                    this.activeSkills = that.skills.find((position) => position.id === jobId);
-                    console.log(this.activeSkills);
-                    this.cats = _.groupBy(data, 'category')[this.activeSkills.category];
-
-                });
-
-            }, errorResp => {
-                console.log(errorResp);
-            });
-
+        .subscribe(data => {
+          this.skills = data;
+          this.storage.get('jobId').then((jobId) => {
+              this.activeSkills = this.skills.find((position) => position.id === jobId);
+              this.cats = _.groupBy(data, 'category')[this.activeSkills.category];
+          });
+        }, errorResp => {
+          console.log(errorResp);
+        });
     }
 
     onClick(): void {
         this.storage.ready().then(() => {
-            let skillId = [];
+            let skills = [];
             this.activeSkills.skills.forEach(function(item) {
-                skillId.push(item.id);
+                skills.push({id: item.id, name: item.name, check: false, balance: 0.00, experiences: []});
             });
-            this.storage.set('skillId', skillId).then(() => {
-                this.router.navigate(['/tags']);
+            this.storage.get('token').then((token) => {
+              const postData = {
+                  'category_id': String(this.activeSkills.id),
+                  'user_id': String(token),
+                  'skills': skills
+              };
+              this.http.post(environment.url + '/users/skill/new', postData, {})
+              .subscribe((data: any) => {
+                if (data.id) {
+                  this.user_task_id = data.id;
+                }
+              }, error => {
+                console.log(error);
+              });
+              this.router.navigate(['/tags']);
             });
         });
     }

@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar>
+  <div class="toolbar">
     <ion-title>
       <div class="l">Let’s color</div>
       <div class="c"><img src="/assets/images/diamond.png" /></div>
       <div class="r">Your story</div>
     </ion-title>
-  </ion-toolbar>
+  </div>
 </ion-header>
 
 <ion-content class="tags-content">
 
-  <div class="item-list" *ngFor="let item of activeSkills" [class.open]="item.check">
+  <div class="item-list" *ngFor="let item of skills" [class.open]="item.check">
     <div class="item-list-header" (click)="openItem(item)">
       <div class="item-list-name">{{ item.name }}</div>
       <div class="item-list-balance">
@@ -24,11 +24,13 @@
 <!--  <ion-button expand="block" shape="undefined" class="add-skill">Add Skill</ion-button>-->
 
   <div class="modal" [class.open]="modalItemView">
+    <div class="expirence-name">{{ itemSkill.name }}</div>
     <div class="expirence-block" *ngIf="itemSkill">
       <div class="expirence-list" *ngFor="let exp of itemSkill.experiences">
         <div class="expirence-list-header">
-          <span>{{ exp.title }}</span>
-          <i (click)="addExp(exp)">&#9998;</i>
+          <span>{{ exp.name }}</span>
+          <ion-icon name="create" class="edit" (click)="addExp(exp)"></ion-icon>
+          <ion-icon name="close" class="delete" (click)="removeExp(exp)"></ion-icon>
         </div>
         <div class="expirence-list-tab">
           <div class="l">As</div>
@@ -43,29 +45,30 @@
         <div class="expirence-list-tab">
           <div class="t">Accomplished</div>
           <div class="b">
-            <div *ngFor="let acc of exp.accomplished">{{ acc.title }}</div>
+            <div *ngFor="let acc of exp.accomplished">{{ acc.name }}</div>
           </div>
         </div>
       </div>
     </div>
     <ion-button expand="block" shape="undefined" class="experience" (click)="addExp()">Add experience</ion-button>
     <ion-button expand="block" shape="undefined" class="done" (click)="closeItem()">Done</ion-button>
+    <ion-button expand="block" shape="undefined" class="done" (click)="cancelItem()">Cancel</ion-button>
   </div>
 
   <div class="modal modal-edit" [class.open]="modalExpView">
-    <div class="wrap" *ngIf="selectView" (click)="selectView = false"></div>
+    <div class="wrap" *ngIf="selectView" (click)="selectViewClick(false)"></div>
     <div class="select">
-      <div class="select-name" (click)="selectView = true"><span>Select {{experiences.title}}</span></div>
+      <div class="select-name" (click)="selectViewClick(true)"><span>Select {{experiences.name}}</span></div>
       <div class="select-popup" *ngIf="selectView">
-        <div *ngFor="let type of types" (click)="addType(type)">{{ type.title }}</div>
+        <div *ngFor="let type of types" (click)="addType(type)">{{ type.name }}</div>
       </div>
     </div>
     <div class="input"><input type="text" placeholder="Where At Organization" [(ngModel)]="experiences.skill" /></div>
     <div class="input"><input type="text" placeholder="As a Title" [(ngModel)]="experiences.company" /></div>
     <div class="accomplished-list" *ngIf="experiences.accomplished.length > 0">
-      <input type="text" placeholder="Accomplished" [(ngModel)]="acc.title" *ngFor="let acc of experiences.accomplished" />
+      <input type="text" placeholder="Accomplished" [(ngModel)]="acc.name" *ngFor="let acc of experiences.accomplished" />
     </div>
-    <ion-button expand="block" shape="undefined" class="experience" (click)="addAcc()">Add accomplished</ion-button>
+    <ion-button expand="block" shape="undefined" class="experience" (click)="addAcc()" *ngIf="experiences.accomplished.length < 5">Add accomplished</ion-button>
     <ion-button expand="block" shape="undefined" class="experience" (click)="saveExp()">Done</ion-button>
     <ion-button expand="block" shape="undefined" class="done" (click)="closeExp()">Cancel</ion-button>
   </div>
