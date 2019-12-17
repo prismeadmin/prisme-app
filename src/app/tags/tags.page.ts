@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import 'hammerjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -20,11 +21,13 @@ export class TagsPage implements OnInit {
     selectViewBlock: any = false;
     experiences: any;
     types: any;
+    cardIndex: any;
     
     constructor(private route: ActivatedRoute, public router: Router, public storage: Storage, public http: HttpClient) {
         this.itemSkill = {id: 0, name: '', check: false, balance: 0.00, experiences: []};
         this.types = [{name: 'Professional', id: 1},{name: 'Volunteer', id: 2}];
         this.experiences = {id: 0, name: '', skill: '', company: '', accomplished: []};
+        this.cardIndex = 1;
     }
 
     ngOnInit() {
@@ -52,12 +55,37 @@ export class TagsPage implements OnInit {
                       that.modalItemView = true;          
                     }          
                   });    
-                }                     
+                }            
+                let size = document.getElementById('cardsBlock').getBoundingClientRect();
+                let sizeTab = document.getElementById('cardsBlock').querySelectorAll('.item-list-clone')[0].getBoundingClientRect();
+                let wide = (size.width - sizeTab.width) / this.skills.length;
+                let colors = ['#FB4702', '#ED1B0F', '#FE7804','#FE9601','#F52D41','#FBC70F','#FAE910','#FDD808','#AAC80D', '#9CD337','#73C030','#401D8C','#228FAB','#0B59B1','#A9416B'];
+                this.skills.map(function(item, i){
+                  item.color = colors[Math.floor(Math.random() * Math.floor(colors.length - 1))];
+                  item.wide = wide * i;
+                  return item;
+                });
+                this.cardIndex = this.skills.length - 1;
             }, errorResp => {
               console.log(errorResp);
             });
         });  
         
+    }
+    
+    swipeEvent(e) {
+      if (e.target.closest('.item-list-tab')) {
+        if (e.deltaX > 100) {
+          if (this.cardIndex > 0) {
+            this.cardIndex = this.cardIndex - 1;
+          }
+        }
+        if (e.deltaX < - 100) {
+          if (this.cardIndex < this.skills.length - 1) {
+            this.cardIndex = this.cardIndex + 1;
+          }
+        }        
+      }      
     }
     
     ionViewWillEnter() {
